@@ -1,6 +1,5 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
-import fr.renaudSinigaglia.inferenceType.base.Expr;
 import fr.renaudSinigaglia.inferenceType.base.Var;
 import fr.renaudSinigaglia.inferenceType.unification.Unifiable;
 
@@ -13,16 +12,13 @@ import java.util.List;
 public class TypeInfer implements Unifiable {
 
     private List<Constraint> constraints;
-    private List<TypeVariable> tvs = new ArrayList();
-
-    private Exception typeError;
-    private InferState inferState;
-    private Expr a;
-    private int count = 0;
+    private List<TypeVariable> tvs = new ArrayList(); //todo watch
+    private TypeEnv typeEnv;
 
 
     public TypeInfer() {
         this.constraints = new ArrayList();
+        this.typeEnv = new TypeEnv();
     }
 
     private TypeInfer(TypeInfer parent) {
@@ -31,9 +27,8 @@ public class TypeInfer implements Unifiable {
 
 
     public TypeVariable createFreshTypeVariable() {
-        TypeVariable tv = new TypeVariable("tv" + count);
+        TypeVariable tv = FreshVariableBuilder.createFreshTypeVariable();
         tvs.add(tv);
-        count++;
         return tv;
     }
 
@@ -43,36 +38,16 @@ public class TypeInfer implements Unifiable {
         return local;
     }
 
+    public Scheme lookupEnv(Var variable){
+        return typeEnv.lookup(variable);
+    }
+
     public List<Constraint> getConstraints() {
         return constraints;
     }
 
     public void setConstraints(List<Constraint> constraints) {
         this.constraints = constraints;
-    }
-
-    public Exception getTypeError() {
-        return typeError;
-    }
-
-    public void setTypeError(Exception typeError) {
-        this.typeError = typeError;
-    }
-
-    public InferState getInferState() {
-        return inferState;
-    }
-
-    public void setInferState(InferState inferState) {
-        this.inferState = inferState;
-    }
-
-    public Expr getA() {
-        return a;
-    }
-
-    public void setA(Expr a) {
-        this.a = a;
     }
 
     public void uni(Type t1, Type t2) {

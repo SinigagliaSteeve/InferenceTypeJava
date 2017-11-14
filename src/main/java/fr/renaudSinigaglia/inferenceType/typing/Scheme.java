@@ -24,4 +24,17 @@ public class Scheme {
 
         return new Scheme(Arrays.asList(variables), type);
     }
+
+    public List<TypeVariable> getVariables() {
+        return variables;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public Type instantiate(TypeInfer env) {
+        //todo infer.hs
+        return null;
+    }
 }

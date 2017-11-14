@@ -24,6 +24,6 @@ public class Var extends Expr {
 
     @Override
     public Type infer(TypeInfer typeInfer) {
-        return null;
+        return typeInfer.lookupEnv(this).instantiate(typeInfer);
     }
 }
