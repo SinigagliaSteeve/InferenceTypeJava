@@ -8,4 +8,3 @@ import fr.renaudSinigaglia.inferenceType.base.Literal;
  */
 public class Bool extends Literal<Boolean> {
 }
-    
