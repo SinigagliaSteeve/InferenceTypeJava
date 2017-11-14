@@ -1,5 +1,6 @@
 package fr.renaudSinigaglia.inferenceType.base;
 
+import fr.renaudSinigaglia.inferenceType.typing.Scheme;
 import fr.renaudSinigaglia.inferenceType.typing.Type;
 import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
 
@@ -43,11 +44,11 @@ public class Let extends Expr {
     }
 
     public Type infer(TypeInfer typeInfer) {
-        return null;
+        //ask = typeInfer
+        Type t1 = leftExpr.infer(typeInfer);
+        Scheme sc = typeInfer.generalize(t1); //generalize env t1 TODOz
+        TypeInfer localEnv = typeInfer.inEnv(this.variable, sc);
+        Type t2 = rightExpr.infer(localEnv);
+        return t2;
     }
-
-//    @Override
-//    public Type infer() {
-//        return null;
-//    }
 }

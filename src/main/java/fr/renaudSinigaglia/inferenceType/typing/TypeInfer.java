@@ -38,8 +38,12 @@ public class TypeInfer implements Unifiable {
         return local;
     }
 
-    public Scheme lookupEnv(Var variable){
+    public Scheme lookupEnv(Var variable) {
         return typeEnv.lookup(variable);
+    }
+
+    public Scheme generalize(Type type) {
+        return null; //todo
     }
 
     public List<Constraint> getConstraints() {
