@@ -8,8 +8,25 @@ import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
  * @version 1.0.0
  */
 public abstract class Literal<T> extends Expr {
+    private T value;
+    private Type type;
+
+    public Literal(T value, Type type) {
+        this.value = value;
+        this.type = type;
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
     @Override
     public Type infer(TypeInfer typeInfer) {
-        return null;
+        return this.type;
     }
+
 }
