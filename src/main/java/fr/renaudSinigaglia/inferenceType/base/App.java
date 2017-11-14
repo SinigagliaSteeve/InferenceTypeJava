@@ -4,13 +4,12 @@ import fr.renaudSinigaglia.inferenceType.typing.Type;
 import fr.renaudSinigaglia.inferenceType.typing.TypeArray;
 import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
 import fr.renaudSinigaglia.inferenceType.typing.TypeVariable;
-import fr.renaudSinigaglia.inferenceType.unification.Unifier;
 
 /**
  * @author Sinigaglia Steeve
  * @version 1.0.0
  */
-public class App implements Expr {
+public class App extends Expr {
     private Expr leftExpr;
     private Expr rightExpr;
 
@@ -35,12 +34,12 @@ public class App implements Expr {
         this.rightExpr = rightExpr;
     }
 
-    @Override
-    public Type infer() {
-        Type t1 = leftExpr.infer();
-        Type t2 = rightExpr.infer();
-        TypeVariable tv = TypeInfer.getInstance().getEnv().createFreshTypeVariable();
-        Unifier.uni(t1, new TypeArray(t2, tv));
+    public Type infer(TypeInfer typeInfer) { //todo
+        Type t1 = leftExpr.infer(typeInfer);
+        Type tr = rightExpr.infer(typeInfer);
+        TypeVariable tv = typeInfer.createFreshTypeVariable();
+        typeInfer.uni(t1, new TypeArray(tr, tv));
         return tv;
     }
+
 }

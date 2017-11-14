@@ -1,6 +1,8 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
 import fr.renaudSinigaglia.inferenceType.base.Expr;
+import fr.renaudSinigaglia.inferenceType.base.Var;
+import fr.renaudSinigaglia.inferenceType.unification.Unifiable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,31 +10,37 @@ import java.util.List;
 /**
  * Created by damien on 03/11/2017.
  */
-public class TypeInfer {
+public class TypeInfer implements Unifiable {
 
-    private Env env;
     private List<Constraint> constraints;
+    private List<TypeVariable> tvs = new ArrayList();
+
     private Exception typeError;
     private InferState inferState;
     private Expr a;
+    private int count = 0;
 
-    private static TypeInfer INSTANCE = new TypeInfer();
 
-    private TypeInfer() {
-        this.env = new Env();
+    public TypeInfer() {
         this.constraints = new ArrayList();
     }
 
-    public static TypeInfer getInstance(){
-        return INSTANCE;
+    private TypeInfer(TypeInfer parent) {
+        //todo
     }
 
-    public Env getEnv() {
-        return env;
+
+    public TypeVariable createFreshTypeVariable() {
+        TypeVariable tv = new TypeVariable("tv" + count);
+        tvs.add(tv);
+        count++;
+        return tv;
     }
 
-    public void setEnv(Env env) {
-        this.env = env;
+    public TypeInfer inEnv(Var var, Scheme scheme) {
+        TypeInfer local = new TypeInfer(this);
+        //todo
+        return local;
     }
 
     public List<Constraint> getConstraints() {
@@ -41,10 +49,6 @@ public class TypeInfer {
 
     public void setConstraints(List<Constraint> constraints) {
         this.constraints = constraints;
-    }
-
-    public void addConstraint(Type t1, Type t2) {
-        this.constraints.add(new Constraint(t1, t2));
     }
 
     public Exception getTypeError() {
@@ -69,5 +73,9 @@ public class TypeInfer {
 
     public void setA(Expr a) {
         this.a = a;
+    }
+
+    public void uni(Type t1, Type t2) {
+        this.constraints.add(new Constraint(t1, t2));
     }
 }

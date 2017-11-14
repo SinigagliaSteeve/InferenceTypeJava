@@ -8,11 +8,7 @@ import fr.renaudSinigaglia.inferenceType.typing.Type;
  * @author Sinigaglia Steeve
  * @version 1.0.0
  */
-public class BoolLiteral extends Literal {
+public class BoolLiteral extends Literal<Boolean> {
 
-    @Override
-    public Type infer() {
-        return new Bool();
-    }
 }
     

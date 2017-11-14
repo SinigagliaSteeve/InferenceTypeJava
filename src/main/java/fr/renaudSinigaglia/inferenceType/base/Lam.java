@@ -1,16 +1,12 @@
 package fr.renaudSinigaglia.inferenceType.base;
 
-import fr.renaudSinigaglia.inferenceType.typing.Type;
-import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
-import fr.renaudSinigaglia.inferenceType.typing.TypeVariable;
-
-import java.util.List;
+import fr.renaudSinigaglia.inferenceType.typing.*;
 
 /**
  * @author Sinigaglia Steeve
  * @version 1.0.0
  */
-public class Lam implements Expr {
+public class Lam extends Expr {
     private Var variable;
     private Expr expression;
 
@@ -35,10 +31,18 @@ public class Lam implements Expr {
         this.expression = expression;
     }
 
-    @Override
-    public Type infer() {
-        TypeVariable tv = TypeInfer.getInstance().getEnv().createFreshTypeVariable();
-
-        return null;
+    public Type infer(TypeInfer typeInfer) {
+        TypeVariable tv = typeInfer.createFreshTypeVariable();
+        TypeInfer localEnv = typeInfer.inEnv(this.variable, Scheme.forAll(tv));
+        Type res = expression.infer(localEnv);
+        return new TypeArray(tv, res);
     }
+
+
+//    @Override
+//    public Type infer() {
+//        TypeVariable tv = TypeInfer.getInstance().getEnv().createFreshTypeVariable();
+//
+//        return null;
+//    }
 }

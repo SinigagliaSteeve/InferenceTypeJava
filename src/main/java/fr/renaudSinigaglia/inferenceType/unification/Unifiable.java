@@ -6,9 +6,7 @@ import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
 /**
  * Created by damien on 03/11/2017.
  */
-public class Unifier {
+public interface Unifiable {
 
-    public static void uni(Type t1, Type t2) {
-        TypeInfer.getInstance().addConstraint(t1, t2);
-    }
+    void uni(Type t1, Type t2);
 }

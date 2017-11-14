@@ -1,12 +1,13 @@
 package fr.renaudSinigaglia.inferenceType.base;
 
 import fr.renaudSinigaglia.inferenceType.typing.Type;
+import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
 
 /**
  * @author Sinigaglia Steeve
  * @version 1.0.0
  */
-public class Let implements Expr {
+public class Let extends Expr {
     private Var variable;
     private Expr leftExpr;
     private Expr rightExpr;
@@ -41,8 +42,12 @@ public class Let implements Expr {
         this.rightExpr = rightExpr;
     }
 
-    @Override
-    public Type infer() {
+    public Type infer(TypeInfer typeInfer) {
         return null;
     }
+
+//    @Override
+//    public Type infer() {
+//        return null;
+//    }
 }

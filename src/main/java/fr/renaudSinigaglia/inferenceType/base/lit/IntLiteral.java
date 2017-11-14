@@ -8,10 +8,6 @@ import fr.renaudSinigaglia.inferenceType.typing.Type;
  * @author Sinigaglia Steeve
  * @version 1.0.0
  */
-public class IntLiteral extends Literal {
+public class IntLiteral extends Literal<Integer> {
 
-    @Override
-    public Type infer() {
-        return new Int();
-    }
 }

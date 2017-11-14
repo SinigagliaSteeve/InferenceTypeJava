@@ -1,12 +1,13 @@
 package fr.renaudSinigaglia.inferenceType.base;
 
 import fr.renaudSinigaglia.inferenceType.typing.Type;
+import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
 
 /**
  * @author Sinigaglia Steeve
  * @version 1.0.0
  */
-public class Var implements Expr {
+public class Var extends Expr {
     private String name;
 
     public Var(String name) {
@@ -22,7 +23,7 @@ public class Var implements Expr {
     }
 
     @Override
-    public Type infer() {
+    public Type infer(TypeInfer typeInfer) {
         return null;
     }
 }
