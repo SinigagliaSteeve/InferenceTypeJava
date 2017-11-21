@@ -1,0 +1,53 @@
+=====================================
+=
+=	Inférence de type à la ML en java
+=
+=   Groupe : Steeve Sinigaglia
+=			 Damien Renaud
+=
+=====================================
+
+
+#### Semaine 40
+
+Prise de connaissance du sujet :
+	- Lecture du chapitre Hindley-Milner Inference
+	- Découverte de l'algorithme écris en Haskell
+	- Lecture d'articles annexes
+
+#### Semaine 41
+	- Réunion du 10/10/2017
+		- Aide à la compréhension du sujet (Grammaire)
+		- Exemples en haskell et explications sur l'inférence de type
+		- Avertissements sur les différences langages fonctionnels et imépratifs (Modales, mutabilité)
+
+	- Objectifs
+		- Se concentrer sur la compréhension de l'algorithme (cf chapitre)
+		- Dérouler l'algorithme avec plusieurs exemples pour comprendre quelles règles sont appliquées dans quels cas
+
+#### Semaine 42
+	- Séance du lundi 16/10
+		- A partir de plusieurs exemples d'expressions en haskell, nous avons déroulé manuellement une partie de l'algorithme en déterminant les règles de typage utilisées dans chaque situation. Des difficultés ont été rencontrées sur un exemple contenant une fonction prenant deux arguments (ex : (\x y -> x + y) 5 6)
+		- Nous avons essayé d'exécuter l'algorithme en haskell (cf article) mais nous n'avons pas réussi (Problème de versions avec cabal) : Toujours en cours de recherche
+	- Séance du mardi 17/10
+		- Relecture du document expliquant l'inférence de type avec un focus sur la compréhension de la partie unification : Cette relecture a permis de mieux comprendre certains aspects après avoir réaliser manuellement quelques exemples.
+		- Recherche d'explications sur certains éléments utilisés dans le document (ex: infer dans typing rules, substituable, scheme, etc...)
+
+#### Semaine 43
+	- Séance du 26/10
+		- Après un retour du groupe ayant eu une réunion avec vous jeudi 26, nous avons compris que nous regardions le mauvais algorithme. Nous avons donc étudié le second algorithme qui a quand même été plus simple à appréhender après l'étude du premier.
+		- Nous avons déroulé une nouvelle fois l'algorithme complet sur un cas bloquant (ne typant pas)
+	- Séance du 27/10
+		- (Seconde) tentative d'exécution de l'algorithme implémenté en haskell (cf github du document sur Hindley Milner) sans réussite. (à voir lors de la prochaine réunion)
+		- Début de l'implémentation en java : Création des éléments de base du langage que l'algorithme devra typer
+
+
+#### Semaine 46
+	- Séance du 14/11
+		- Fin de l'implémentation de l'AST
+		- Travail sur la conception globale de l'algorithme
+		- Implémentation de toutes les méthodes d'inférence pour chaque type d'expression : Quelques sous-fonctions (ex : generalize) sont encore en cours.
+		- Reste à faire
+			- Terminer l'implémentation des sous-fonctions
+			- Implémentation de la résolution des contraintes sur les types
+			- Réaliser des tests

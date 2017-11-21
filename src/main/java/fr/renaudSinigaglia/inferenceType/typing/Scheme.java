@@ -1,14 +1,17 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
+import fr.renaudSinigaglia.inferenceType.Substitution.Substituable;
+
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 /**
  * @author Sinigaglia Steeve
  * @version 1.0.0
  */
-public class Scheme {
+public class Scheme extends Substituable<Scheme>{
     private List<TypeVariable> variables;
     private Type type;
 
@@ -36,5 +39,18 @@ public class Scheme {
     public Type instantiate(TypeInfer env) {
         //todo infer.hs
         return null;
+    }
+
+    @Override
+    public Scheme apply(Substituable subst) {
+        return null; //todo
+    }
+
+    @Override
+    public HashSet<TypeVariable> ftv() {
+        HashSet<TypeVariable> set = new HashSet<>();
+        set.addAll(type.ftv());
+        set.removeAll(variables);
+        return set;
     }
 }

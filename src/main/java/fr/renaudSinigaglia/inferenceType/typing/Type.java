@@ -1,9 +1,13 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
+import fr.renaudSinigaglia.inferenceType.Substitution.Substituable;
+
+import java.util.HashSet;
+
 /**
  * Created by damien on 03/11/2017.
  */
-public class Type {
+public abstract class Type<T> extends Substituable<T>{
 
     private String name;
     private String value;
@@ -23,5 +27,17 @@ public class Type {
     public void setValue(String value) {
         this.value = value;
     }
+//
+//    @Override
+//    public Type apply(Substituable subst, Type a) {
+//        if(a instanceof TypeCon)
+//            return a;
+//        return null;
+//    }
+//
+//    @Override
+//    public HashSet<TypeVariable> ftv(Type a) {
+//        return null;
+//    }
 }
 

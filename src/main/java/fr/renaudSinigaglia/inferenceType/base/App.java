@@ -34,7 +34,7 @@ public class App extends Expr {
         this.rightExpr = rightExpr;
     }
 
-    public Type infer(TypeInfer typeInfer) { //todo
+    public Type infer(TypeInfer typeInfer) {
         Type t1 = leftExpr.infer(typeInfer);
         Type tr = rightExpr.infer(typeInfer);
         TypeVariable tv = typeInfer.createFreshTypeVariable();
