@@ -51,3 +51,10 @@ Prise de connaissance du sujet :
 			- Terminer l'implémentation des sous-fonctions
 			- Implémentation de la résolution des contraintes sur les types
 			- Réaliser des tests
+
+#### Semaine 47
+	- Séance du 21/11
+		- Début implémentation de la partie substitution 
+			- Implémentations de ftv réalisées
+			- Reste à faire les fonctions apply, avec quelques difficultés de compréhension
+		- Analyse du fonctionnement des fonctions unifies et unifyMany à implémenter à la fin de la substitution
