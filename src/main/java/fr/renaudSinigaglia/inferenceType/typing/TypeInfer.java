@@ -3,8 +3,7 @@ package fr.renaudSinigaglia.inferenceType.typing;
 import fr.renaudSinigaglia.inferenceType.base.Var;
 import fr.renaudSinigaglia.inferenceType.unification.Unifiable;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by damien on 03/11/2017.
@@ -43,7 +42,10 @@ public class TypeInfer implements Unifiable {
     }
 
     public Scheme generalize(Type type) {
-        return null; //todo
+        Set<TypeVariable> setA = type.ftv();
+        Set<TypeVariable> setB = typeEnv.ftv();
+        setA.removeAll(setB);
+        return new Scheme((List<TypeVariable>) setA, type);
     }
 
     public List<Constraint> getConstraints() {

@@ -13,7 +13,7 @@ public class Scheme extends Substituable<Scheme>{
     private List<TypeVariable> variables;
     private Type type;
 
-    private Scheme(List<TypeVariable> variables, Type type) {
+    public Scheme(List<TypeVariable> variables, Type type) {
         this.variables = variables;
         this.type = type;
     }

@@ -7,7 +7,7 @@ import java.util.HashSet;
 /**
  * Created by damien on 03/11/2017.
  */
-public abstract class Type<T> extends Substituable<T>{
+public abstract class Type<T> extends Substituable<Type>{
 
     private String name;
     private String value;
@@ -27,15 +27,18 @@ public abstract class Type<T> extends Substituable<T>{
     public void setValue(String value) {
         this.value = value;
     }
-//
+
 //    @Override
-//    public Type apply(Substituable subst, Type a) {
+//    public Type apply(Substituable subst) {
+//        return null;
+//    }
+
+    //    public Type apply(Substituable subst, Type a) {
 //        if(a instanceof TypeCon)
 //            return a;
 //        return null;
 //    }
 //
-//    @Override
 //    public HashSet<TypeVariable> ftv(Type a) {
 //        return null;
 //    }

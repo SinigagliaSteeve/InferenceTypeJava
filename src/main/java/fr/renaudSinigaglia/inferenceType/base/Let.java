@@ -46,7 +46,7 @@ public class Let extends Expr {
     public Type infer(TypeInfer typeInfer) {
         //ask = typeInfer
         Type t1 = leftExpr.infer(typeInfer);
-        Scheme sc = typeInfer.generalize(t1); //generalize env t1 TODOz
+        Scheme sc = typeInfer.generalize(t1);
         TypeInfer localEnv = typeInfer.inEnv(this.variable, sc);
         Type t2 = rightExpr.infer(localEnv);
         return t2;

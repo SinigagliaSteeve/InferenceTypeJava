@@ -18,6 +18,10 @@ public class TypeEnv extends Substituable<TypeEnv>{
         this.env = new HashMap<Var, Scheme>();
     }
 
+    public TypeEnv(HashMap<Var, Scheme> newMap) {
+        this.env = newMap;
+    }
+
     public Scheme lookup(Var variable) {
         Scheme scheme = env.get(variable);
         if (scheme == null) {
@@ -28,7 +32,12 @@ public class TypeEnv extends Substituable<TypeEnv>{
 
     @Override
     public TypeEnv apply(Substituable subst) {
-        return null;
+
+        HashMap<Var, Scheme> newMap = new HashMap<>();
+        for (Var var : env.keySet()) {
+            newMap.put(var, env.get(var).apply(subst));
+        }
+        return new TypeEnv(newMap);
     }
 
     @Override
