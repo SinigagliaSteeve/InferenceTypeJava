@@ -8,7 +8,7 @@ import fr.renaudSinigaglia.inferenceType.base.Var;
 /**
  * Created by damien on 29/10/2017.
  */
-public class main {
+public class Main {
 
     public static void main(String[] args) {
 

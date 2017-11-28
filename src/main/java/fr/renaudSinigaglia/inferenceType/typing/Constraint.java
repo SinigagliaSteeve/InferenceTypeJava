@@ -1,5 +1,6 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
+import fr.renaudSinigaglia.inferenceType.Substitution.Subst;
 import fr.renaudSinigaglia.inferenceType.Substitution.Substituable;
 
 import java.util.HashSet;
@@ -18,7 +19,7 @@ public class Constraint extends Substituable<Constraint>{
     }
 
     @Override
-    public Constraint apply(Substituable subst) {
+    public Constraint apply(Subst subst) {
         // TODO WARNING C'est étrange
         Type tLeft = (Type) t1.apply(subst);
         Type tRight= (Type) t2.apply(subst);

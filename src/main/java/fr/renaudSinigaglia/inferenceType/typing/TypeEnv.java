@@ -1,5 +1,6 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
+import fr.renaudSinigaglia.inferenceType.Substitution.Subst;
 import fr.renaudSinigaglia.inferenceType.Substitution.Substituable;
 import fr.renaudSinigaglia.inferenceType.base.Var;
 import fr.renaudSinigaglia.inferenceType.exception.UnboundVariable;
@@ -31,7 +32,7 @@ public class TypeEnv extends Substituable<TypeEnv>{
     }
 
     @Override
-    public TypeEnv apply(Substituable subst) {
+    public TypeEnv apply(Subst subst) {
 
         HashMap<Var, Scheme> newMap = new HashMap<>();
         for (Var var : env.keySet()) {

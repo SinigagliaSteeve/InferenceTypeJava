@@ -1,13 +1,13 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
-import fr.renaudSinigaglia.inferenceType.Substitution.Substituable;
+import fr.renaudSinigaglia.inferenceType.Substitution.Subst;
 
 import java.util.HashSet;
 
 /**
  * Created by damien on 03/11/2017.
  */
-public class TypeArray extends Type {
+public class TypeArray extends Type<TypeArray> {
     private Type typeLeft;
     private Type typeRight;
 
@@ -33,7 +33,7 @@ public class TypeArray extends Type {
     }
 
     @Override
-    public Object apply(Substituable subst) {
+    public TypeArray apply(Subst subst) {
         return null;
     }
 

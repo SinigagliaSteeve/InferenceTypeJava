@@ -45,11 +45,13 @@ public class Scheme extends Substituable<Scheme>{
     }
 
     @Override
-    public Scheme apply(Substituable subst) {
-        for (TypeVariable variable : variables) {
-//            type.apply(new Subst())
+    public Scheme apply(Subst subst) {
+        List<TypeVariable> newList = new ArrayList<>();
+        for (TypeVariable tv : variables) {
+            newList.add(tv.apply(subst));
         }
-        return null; //todo
+        Type newType = (Type) type.apply(subst);
+        return new Scheme(newList, newType); //todo
     }
 
     @Override

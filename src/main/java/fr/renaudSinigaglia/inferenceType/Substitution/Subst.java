@@ -6,7 +6,6 @@ import fr.renaudSinigaglia.inferenceType.typing.TypeVariable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Created by damien on 21/11/2017.
@@ -21,7 +20,7 @@ public class Subst extends Substituable<Subst>{
     }
 
     @Override
-    public Subst apply(Substituable subst) {
+    public Subst apply(Subst subst) {
         return null;
     }
 
@@ -32,5 +31,7 @@ public class Subst extends Substituable<Subst>{
         return set;
     }
 
-
+    public HashMap<TypeVariable, Type> getSubst() {
+        return subst;
+    }
 }

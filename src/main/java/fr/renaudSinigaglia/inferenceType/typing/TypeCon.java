@@ -1,6 +1,6 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
-import fr.renaudSinigaglia.inferenceType.Substitution.Substituable;
+import fr.renaudSinigaglia.inferenceType.Substitution.Subst;
 
 import java.util.HashSet;
 
@@ -20,7 +20,7 @@ public class TypeCon extends Type<TypeCon>{
     }
 
     @Override
-    public TypeCon apply(Substituable subst) {
+    public TypeCon apply(Subst subst) {
         return this;
     }
 
