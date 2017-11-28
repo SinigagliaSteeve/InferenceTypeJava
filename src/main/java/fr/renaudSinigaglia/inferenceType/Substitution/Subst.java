@@ -5,6 +5,7 @@ import fr.renaudSinigaglia.inferenceType.typing.TypeVariable;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -12,6 +13,12 @@ import java.util.stream.Stream;
  */
 public class Subst extends Substituable<Subst>{
     private HashMap<TypeVariable, Type> subst = new HashMap<>();
+
+    public Subst(List<TypeVariable> variables, List<TypeVariable> freshVariables) {
+        for (int i = 0; i < variables.size(); i++) {
+            subst.put(variables.get(i), freshVariables.get(i));
+        }
+    }
 
     @Override
     public Subst apply(Substituable subst) {
@@ -24,4 +31,6 @@ public class Subst extends Substituable<Subst>{
         subst.values().forEach(type -> set.addAll(type.ftv())); // TODO Check ordonancement
         return set;
     }
+
+
 }

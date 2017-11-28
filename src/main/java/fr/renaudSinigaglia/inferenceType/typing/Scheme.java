@@ -1,11 +1,9 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
+import fr.renaudSinigaglia.inferenceType.Substitution.Subst;
 import fr.renaudSinigaglia.inferenceType.Substitution.Substituable;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Sinigaglia Steeve
@@ -38,11 +36,19 @@ public class Scheme extends Substituable<Scheme>{
 
     public Type instantiate(TypeInfer env) {
         //todo infer.hs
-        return null;
+        List<TypeVariable> freshVariables = new LinkedList<>();
+        for (TypeVariable var : variables) {
+            freshVariables.add(env.createFreshTypeVariable());
+        }
+        Subst subst = new Subst(variables, freshVariables);
+        return apply(subst).type;
     }
 
     @Override
     public Scheme apply(Substituable subst) {
+        for (TypeVariable variable : variables) {
+//            type.apply(new Subst())
+        }
         return null; //todo
     }
 
