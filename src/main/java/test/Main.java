@@ -16,16 +16,24 @@ public class Main {
 
         // let f = (\x -> x) in (\z y -> z) (f True) (f (1::Int))
 
+        // True
         Bool boolExp = new Bool(true);
         Type t = boolExp.infer();
         System.out.println(t);
 
+        // (\x -> True)
         Lam lamExp = new Lam(new Var("x"),boolExp);
         Type t2 = lamExp.infer();
         System.out.println(t2);
 
-        Let letExp = new Let(new Var("x"), new Lam(), lamExp);
+        // let f = (\x -> x) in (f True)
+        Var f = new Var("f");
+        Var x = new Var("x");
+        Lam l = new Lam(x, x);
+        App app = new App(f, new Bool(true));
+        Let expFinal = new Let(f, l, app);
 
-
+        Type t3 = expFinal.infer();
+        System.out.println(t3);
     }
 }

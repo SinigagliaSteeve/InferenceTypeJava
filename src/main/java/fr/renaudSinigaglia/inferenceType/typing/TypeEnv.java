@@ -49,4 +49,12 @@ public class TypeEnv extends Substituable<TypeEnv>{
         }
         return set;
     }
+
+    public void remove(Var var) {
+        env.remove(var);
+    }
+
+    public void extend(Var var, Scheme scheme) {
+        env.put(var, scheme);
+    }
 }
