@@ -1,13 +1,14 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
 import fr.renaudSinigaglia.inferenceType.Substitution.Substituable;
+import fr.renaudSinigaglia.inferenceType.unification.Unifiable;
 
 import java.util.HashSet;
 
 /**
  * Created by damien on 03/11/2017.
  */
-public abstract class Type<T> extends Substituable{
+public abstract class Type<T> extends Substituable implements Unifiable {
 
     private String name;
     private String value;
@@ -27,22 +28,4 @@ public abstract class Type<T> extends Substituable{
     public void setValue(String value) {
         this.value = value;
     }
-
-
-
-//    @Override
-//    public Type apply(Substituable subst) {
-//        return null;
-//    }
-
-    //    public Type apply(Substituable subst, Type a) {
-//        if(a instanceof TypeCon)
-//            return a;
-//        return null;
-//    }
-//
-//    public HashSet<TypeVariable> ftv(Type a) {
-//        return null;
-//    }
 }
-

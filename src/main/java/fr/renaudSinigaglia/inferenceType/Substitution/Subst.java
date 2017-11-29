@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by damien on 21/11/2017.
  */
-public class Subst extends Substituable<Subst>{
+public class Subst extends Substituable<Subst> {
     private HashMap<TypeVariable, Type> subst = new HashMap<>();
 
     public Subst(List<TypeVariable> variables, List<TypeVariable> freshVariables) {
@@ -19,8 +19,27 @@ public class Subst extends Substituable<Subst>{
         }
     }
 
+    public Subst() {
+    }
+
+    private Subst(Subst prev) {
+        subst.putAll(prev.subst);
+    }
+
+    public Subst(TypeVariable tVar, Type type) {
+        subst.put(tVar, type);
+    }
+
+    public Subst compose(Subst sub) {
+        Subst s = new Subst(sub);
+        s.apply(this);
+        subst.putAll(s.subst);
+        return this;
+    }
+
     @Override
     public Subst apply(Subst subst) {
+        //TODO
         return null;
     }
 

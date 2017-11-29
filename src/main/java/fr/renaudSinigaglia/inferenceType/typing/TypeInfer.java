@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * Created by damien on 03/11/2017.
  */
-public class TypeInfer implements Unifiable {
+public class TypeInfer {
 
     private List<Constraint> constraints;
     private List<TypeVariable> tvs = new ArrayList(); //todo watch

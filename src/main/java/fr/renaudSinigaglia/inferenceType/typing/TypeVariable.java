@@ -8,7 +8,7 @@ import java.util.HashSet;
 /**
  * Created by damien on 03/11/2017.
  */
-public class TypeVariable extends Type<Type>{
+public class TypeVariable extends Type<Type> {
 
     private String name;
     private Type type;
@@ -28,7 +28,7 @@ public class TypeVariable extends Type<Type>{
     @Override
     public Type apply(Subst subst) {
         Type t = subst.getSubst().get(this);
-        if(t != null){
+        if (t != null) {
             return t;
         }
         return this;
@@ -42,5 +42,10 @@ public class TypeVariable extends Type<Type>{
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public Subst unifies(Type type) {
+        return bind(this, type);
     }
 }
