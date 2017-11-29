@@ -48,7 +48,7 @@ public class Scheme extends Substituable<Scheme>{
     public Scheme apply(Subst subst) {
         List<TypeVariable> newList = new ArrayList<>();
         for (TypeVariable tv : variables) {
-            newList.add(tv.apply(subst));
+            newList.add((TypeVariable)tv.apply(subst));
         }
         Type newType = (Type) type.apply(subst);
         return new Scheme(newList, newType); //todo

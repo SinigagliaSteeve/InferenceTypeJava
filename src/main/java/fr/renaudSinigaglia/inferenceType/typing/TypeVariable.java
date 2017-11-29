@@ -38,4 +38,9 @@ public class TypeVariable extends Type<Type>{
     public HashSet<TypeVariable> ftv() {
         return new HashSet<>(Collections.singleton(this));
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

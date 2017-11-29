@@ -34,7 +34,7 @@ public class TypeArray extends Type<TypeArray> {
 
     @Override
     public TypeArray apply(Subst subst) {
-        return null;
+        return new TypeArray((Type)typeLeft.apply(subst), (Type)typeRight.apply(subst));
     }
 
     @Override
@@ -45,4 +45,10 @@ public class TypeArray extends Type<TypeArray> {
 
         return set;
     }
+
+    @Override
+    public String toString() {
+        return typeLeft + " -> " + typeRight;
+    }
 }
+

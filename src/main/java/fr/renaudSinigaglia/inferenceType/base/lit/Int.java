@@ -13,4 +13,9 @@ public class Int extends Literal<Integer> {
     public Int(Integer value) {
         super(value, new TypeCon("Int"));
     }
+
+    @Override
+    public String toString() {
+        return "Int";
+    }
 }

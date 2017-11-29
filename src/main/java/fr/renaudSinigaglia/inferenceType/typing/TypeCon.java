@@ -28,4 +28,9 @@ public class TypeCon extends Type<TypeCon>{
     public HashSet<TypeVariable> ftv() {
         return new HashSet<>();
     }
+
+    @Override
+    public String toString() {
+        return nameType;
+    }
 }

@@ -15,8 +15,9 @@ public class Bool extends Literal<Boolean> {
         super(value, new TypeCon("Bool"));
     }
 
-    public TypeCon cons() {
-        return new TypeCon("Bool");
+    @Override
+    public String toString() {
+        return "Bool";
     }
 }
     
