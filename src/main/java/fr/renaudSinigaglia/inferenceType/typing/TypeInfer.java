@@ -21,7 +21,8 @@ public class TypeInfer {
     }
 
     private TypeInfer(TypeInfer parent) {
-        //todo
+        constraints = parent.constraints;
+        typeEnv = parent.typeEnv;
     }
 
 
@@ -33,7 +34,8 @@ public class TypeInfer {
 
     public TypeInfer inEnv(Var var, Scheme scheme) {
         TypeInfer local = new TypeInfer(this);
-        //todo
+        local.typeEnv.remove(var);
+        local.typeEnv.extend(var, scheme);
         return local;
     }
 
@@ -45,7 +47,9 @@ public class TypeInfer {
         Set<TypeVariable> setA = type.ftv();
         Set<TypeVariable> setB = typeEnv.ftv();
         setA.removeAll(setB);
-        return new Scheme((List<TypeVariable>) setA, type);
+        ArrayList<TypeVariable> tvList = new ArrayList<>();
+        tvList.addAll(setA);
+        return new Scheme(tvList, type);
     }
 
     public List<Constraint> getConstraints() {
