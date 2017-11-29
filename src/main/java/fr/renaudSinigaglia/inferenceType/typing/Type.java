@@ -1,14 +1,12 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
-import fr.renaudSinigaglia.inferenceType.Substitution.Substituable;
+import fr.renaudSinigaglia.inferenceType.substitution.Substituable;
 import fr.renaudSinigaglia.inferenceType.unification.Unifiable;
-
-import java.util.HashSet;
 
 /**
  * Created by damien on 03/11/2017.
  */
-public abstract class Type<T> extends Substituable implements Unifiable {
+public abstract class Type implements Substituable<Type> {
 
     private String name;
     private String value;

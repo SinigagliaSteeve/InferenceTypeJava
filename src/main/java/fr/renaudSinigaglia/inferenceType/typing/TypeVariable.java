@@ -1,6 +1,6 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
-import fr.renaudSinigaglia.inferenceType.Substitution.Subst;
+import fr.renaudSinigaglia.inferenceType.substitution.Subst;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -8,7 +8,7 @@ import java.util.HashSet;
 /**
  * Created by damien on 03/11/2017.
  */
-public class TypeVariable extends Type<Type> {
+public class TypeVariable extends Type {
 
     private String name;
     private Type type;
@@ -44,8 +44,8 @@ public class TypeVariable extends Type<Type> {
         return name;
     }
 
-    @Override
-    public Subst unifies(Type type) {
-        return bind(this, type);
-    }
+//    @Override
+//    public Subst unifies(Type type) {
+//        return bind(this, type);
+//    }
 }

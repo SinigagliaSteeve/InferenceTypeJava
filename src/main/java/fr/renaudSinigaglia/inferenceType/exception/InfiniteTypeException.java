@@ -1,5 +1,7 @@
 package fr.renaudSinigaglia.inferenceType.exception;
 
+import fr.renaudSinigaglia.inferenceType.typing.Type;
+import fr.renaudSinigaglia.inferenceType.typing.TypeVariable;
 import fr.renaudSinigaglia.inferenceType.unification.Unifiable;
 
 /**
@@ -7,7 +9,7 @@ import fr.renaudSinigaglia.inferenceType.unification.Unifiable;
  */
 public class InfiniteTypeException extends RuntimeException {
 
-    public InfiniteTypeException(Unifiable t1, Unifiable t2) {
+    public InfiniteTypeException(TypeVariable t1, Type t2) {
         super("Impossible to unify" + t1 + " and " + t2);
     }
 }

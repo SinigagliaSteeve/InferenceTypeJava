@@ -1,7 +1,7 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
-import fr.renaudSinigaglia.inferenceType.Substitution.Subst;
-import fr.renaudSinigaglia.inferenceType.Substitution.Substituable;
+import fr.renaudSinigaglia.inferenceType.substitution.Subst;
+import fr.renaudSinigaglia.inferenceType.substitution.Substituable;
 
 import java.util.*;
 
@@ -9,7 +9,7 @@ import java.util.*;
  * @author Sinigaglia Steeve
  * @version 1.0.0
  */
-public class Scheme extends Substituable<Scheme>{
+public class Scheme implements Substituable<Scheme>{
     private List<TypeVariable> variables;
     private Type type;
 
@@ -41,7 +41,7 @@ public class Scheme extends Substituable<Scheme>{
             freshVariables.add(env.createFreshTypeVariable());
         }
         Subst subst = new Subst(variables, freshVariables);
-        return apply(subst).type;
+        return this.type.apply(subst);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class Scheme extends Substituable<Scheme>{
         for (TypeVariable tv : variables) {
             newList.add((TypeVariable)tv.apply(subst));
         }
-        Type newType = (Type) type.apply(subst);
+        Type newType = type.apply(subst);
         return new Scheme(newList, newType); //todo
     }
 

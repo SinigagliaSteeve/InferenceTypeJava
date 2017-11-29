@@ -1,7 +1,7 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
-import fr.renaudSinigaglia.inferenceType.Substitution.Subst;
-import fr.renaudSinigaglia.inferenceType.Substitution.Substituable;
+import fr.renaudSinigaglia.inferenceType.substitution.Subst;
+import fr.renaudSinigaglia.inferenceType.substitution.Substituable;
 import fr.renaudSinigaglia.inferenceType.base.Var;
 import fr.renaudSinigaglia.inferenceType.exception.UnboundVariable;
 
@@ -12,7 +12,7 @@ import java.util.HashSet;
  * @author Sinigaglia Steeve
  * @version 1.0.0
  */
-public class TypeEnv extends Substituable<TypeEnv>{
+public class TypeEnv implements Substituable<TypeEnv>{
     private HashMap<Var, Scheme> env;
 
     public TypeEnv() {

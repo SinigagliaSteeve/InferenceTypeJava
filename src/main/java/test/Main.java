@@ -5,7 +5,10 @@ import fr.renaudSinigaglia.inferenceType.base.Lam;
 import fr.renaudSinigaglia.inferenceType.base.Let;
 import fr.renaudSinigaglia.inferenceType.base.Var;
 import fr.renaudSinigaglia.inferenceType.base.lit.Bool;
+import fr.renaudSinigaglia.inferenceType.solver.Solver;
+import fr.renaudSinigaglia.inferenceType.substitution.Subst;
 import fr.renaudSinigaglia.inferenceType.typing.Type;
+import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
 
 /**
  * Created by damien on 29/10/2017.
@@ -33,7 +36,12 @@ public class Main {
         App app = new App(f, new Bool(true));
         Let expFinal = new Let(f, l, app);
 
-        Type t3 = expFinal.infer();
+        TypeInfer infer = new TypeInfer();
+        Type t3 = expFinal.infer(infer);
+        Solver solver = new Solver();
+        Subst s = solver.runSolve(infer.getConstraints());
+        Type theType = t3.apply(s);
         System.out.println(t3);
+        System.out.println(theType);
     }
 }

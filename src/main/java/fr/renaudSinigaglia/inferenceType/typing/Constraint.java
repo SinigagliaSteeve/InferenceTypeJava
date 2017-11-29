@@ -1,14 +1,14 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
-import fr.renaudSinigaglia.inferenceType.Substitution.Subst;
-import fr.renaudSinigaglia.inferenceType.Substitution.Substituable;
+import fr.renaudSinigaglia.inferenceType.substitution.Subst;
+import fr.renaudSinigaglia.inferenceType.substitution.Substituable;
 
 import java.util.HashSet;
 
 /**
  * Created by damien on 03/11/2017.
  */
-public class Constraint extends Substituable<Constraint>{
+public class Constraint implements Substituable<Constraint>{
 
     private Type t1;
     private Type t2;
@@ -32,5 +32,13 @@ public class Constraint extends Substituable<Constraint>{
         set.addAll(t1.ftv());
         set.addAll(t2.ftv());
         return set;
+    }
+
+    public Type getT1() {
+        return t1;
+    }
+
+    public Type getT2() {
+        return t2;
     }
 }

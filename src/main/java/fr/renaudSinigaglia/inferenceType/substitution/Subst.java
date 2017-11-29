@@ -1,4 +1,4 @@
-package fr.renaudSinigaglia.inferenceType.Substitution;
+package fr.renaudSinigaglia.inferenceType.substitution;
 
 import fr.renaudSinigaglia.inferenceType.typing.Type;
 import fr.renaudSinigaglia.inferenceType.typing.TypeVariable;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by damien on 21/11/2017.
  */
-public class Subst extends Substituable<Subst> {
+public class Subst implements Substituable<Subst> {
     private HashMap<TypeVariable, Type> subst = new HashMap<>();
 
     public Subst(List<TypeVariable> variables, List<TypeVariable> freshVariables) {

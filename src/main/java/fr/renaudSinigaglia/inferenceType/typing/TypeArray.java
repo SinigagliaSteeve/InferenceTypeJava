@@ -1,17 +1,14 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
-import fr.renaudSinigaglia.inferenceType.Substitution.Subst;
+import fr.renaudSinigaglia.inferenceType.substitution.Subst;
 import fr.renaudSinigaglia.inferenceType.exception.UnificationFailException;
 
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by damien on 03/11/2017.
  */
-public class TypeArray extends Type<TypeArray> {
+public class TypeArray extends Type {
     private Type typeLeft;
     private Type typeRight;
 
@@ -38,7 +35,7 @@ public class TypeArray extends Type<TypeArray> {
 
     @Override
     public TypeArray apply(Subst subst) {
-        return new TypeArray((Type) typeLeft.apply(subst), (Type) typeRight.apply(subst));
+        return new TypeArray(typeLeft.apply(subst), typeRight.apply(subst));
     }
 
     @Override
@@ -55,20 +52,23 @@ public class TypeArray extends Type<TypeArray> {
         return typeLeft + " -> " + typeRight;
     }
 
-    @Override
-    public Subst unifies(Type type) {
-        if (type instanceof TypeArray) {
-            return unifyMany(this, (TypeArray) type);
-        }
-        throw new UnificationFailException(this, type);
-    }
+//    @Override
+//    public Subst unifies(Type type) {
+//        if (type instanceof TypeArray) {
+//            TypeArray typeArray = (TypeArray) type;
+//            TypeList tuple1 = new TypeList(this.typeLeft, this.typeRight);
+//            TypeList tuple2 = new TypeList(typeArray.typeLeft, typeArray.typeRight);
+//            return unifyMany(tuple1, tuple2);
+//        }
+//        throw new UnificationFailException(this, type);
+//    }
 
-    private Subst unifyMany(TypeArray t1, TypeArray t2) {
-        Subst subst1 = t1.typeLeft.unifies(t2.typeLeft);
-        Subst subst2 = t2.typeRight.unifies(t2.typeRight);
-        Subst substFinal = subst2.compose(subst1); //todo apply de sust.
-        return substFinal;
-
-    }
+//    private Subst unifyMany(TypeArray t1, TypeArray t2) {
+//        Subst subst1 = t1.typeLeft.unifies(t2.typeLeft);
+//        Subst subst2 = t1.typeRight.apply(subst1).unifies(t2.typeRight.apply(subst1));
+//        Subst substFinal = subst2.compose(subst1); //todo apply de sust.
+//        return substFinal;
+//
+//    }
 }
 

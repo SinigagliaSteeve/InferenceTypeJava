@@ -1,6 +1,6 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
-import fr.renaudSinigaglia.inferenceType.Substitution.Subst;
+import fr.renaudSinigaglia.inferenceType.substitution.Subst;
 import fr.renaudSinigaglia.inferenceType.exception.UnificationFailException;
 
 import java.util.HashSet;
@@ -9,7 +9,7 @@ import java.util.HashSet;
  * @author Sinigaglia Steeve
  * @version 1.0.0
  */
-public class TypeCon extends Type<TypeCon> {
+public class TypeCon extends Type {
     private String nameType;
 
     public TypeCon(String nameType) {
@@ -35,8 +35,8 @@ public class TypeCon extends Type<TypeCon> {
         return nameType;
     }
 
-    @Override
-    public Subst unifies(Type type) {
-        throw new UnificationFailException(this, type);
-    }
+//    @Override
+//    public Subst unifies(Type type) {
+//        throw new UnificationFailException(this, type);
+//    }
 }
