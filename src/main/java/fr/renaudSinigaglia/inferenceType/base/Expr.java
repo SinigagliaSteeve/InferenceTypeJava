@@ -11,6 +11,11 @@ import fr.renaudSinigaglia.inferenceType.type.Type;
  */
 public abstract class Expr {
 
+    /**
+     * Cette méthode permet de lancer l'algorithme en démarrant l'inférence
+     * et la résolution des contraintes.
+     * @return
+     */
     public Type runInfer() {
         Infer infer = new Infer();
         Type type = infer(infer);
