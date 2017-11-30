@@ -21,6 +21,7 @@ public class Constraint implements Substituable<Constraint>{
     @Override
     public Constraint apply(Subst subst) {
         // TODO WARNING C'est étrange
+        System.out.println("PASSED IN APPLY CONSTRAINT");
         Type tLeft = t1.apply(subst);
         Type tRight = t2.apply(subst);
         return new Constraint(tLeft, tRight);

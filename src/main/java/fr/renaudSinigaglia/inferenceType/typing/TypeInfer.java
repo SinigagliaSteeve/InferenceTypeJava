@@ -11,7 +11,7 @@ import java.util.*;
 public class TypeInfer {
 
     private List<Constraint> constraints;
-    private List<TypeVariable> tvs = new ArrayList(); //todo watch
+    private List<TypeVariable> tvs = new ArrayList();
     private TypeEnv typeEnv;
 
 

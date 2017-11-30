@@ -9,7 +9,7 @@ import java.util.*;
  * @author Sinigaglia Steeve
  * @version 1.0.0
  */
-public class Scheme implements Substituable<Scheme>{
+public class Scheme implements Substituable<Scheme> {
     private List<TypeVariable> variables;
     private Type type;
 
@@ -19,15 +19,11 @@ public class Scheme implements Substituable<Scheme>{
     }
 
     public static Scheme forAll(Type type, TypeVariable... variables) {
-        if (variables.length == 0) { //todo watch if null?
+        if (variables.length == 0) {
             return new Scheme(Collections.<TypeVariable>emptyList(), type);
         }
 
         return new Scheme(Arrays.asList(variables), type);
-    }
-
-    public List<TypeVariable> getVariables() {
-        return variables;
     }
 
     public Type getType() {
@@ -35,11 +31,8 @@ public class Scheme implements Substituable<Scheme>{
     }
 
     public Type instantiate(TypeInfer env) {
-        //todo infer.hs
         List<TypeVariable> freshVariables = new LinkedList<>();
-        for (TypeVariable var : variables) {
-            freshVariables.add(env.createFreshTypeVariable());
-        }
+        variables.forEach(v -> freshVariables.add(env.createFreshTypeVariable()));
         Subst subst = new Subst(variables, freshVariables);
         return this.type.apply(subst);
     }
@@ -48,10 +41,10 @@ public class Scheme implements Substituable<Scheme>{
     public Scheme apply(Subst subst) {
         List<TypeVariable> newList = new ArrayList<>();
         for (TypeVariable tv : variables) {
-            newList.add((TypeVariable)tv.apply(subst));
+            newList.add((TypeVariable) tv.apply(subst));
         }
         Type newType = type.apply(subst);
-        return new Scheme(newList, newType); //todo
+        return new Scheme(newList, newType);
     }
 
     @Override

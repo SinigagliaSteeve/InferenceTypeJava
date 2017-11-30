@@ -18,22 +18,6 @@ public class App extends Expr {
         this.rightExpr = rightExpr;
     }
 
-    public Expr getLeftExpr() {
-        return leftExpr;
-    }
-
-    public void setLeftExpr(Expr leftExpr) {
-        this.leftExpr = leftExpr;
-    }
-
-    public Expr getRightExpr() {
-        return rightExpr;
-    }
-
-    public void setRightExpr(Expr rightExpr) {
-        this.rightExpr = rightExpr;
-    }
-
     public Type infer(TypeInfer typeInfer) {
         Type t1 = leftExpr.infer(typeInfer);
         Type tr = rightExpr.infer(typeInfer);

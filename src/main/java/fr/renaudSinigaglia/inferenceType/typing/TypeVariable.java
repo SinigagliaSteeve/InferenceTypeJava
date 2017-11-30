@@ -11,17 +11,8 @@ import java.util.HashSet;
 public class TypeVariable extends Type {
 
     private String name;
-    private Type type;
 
     public TypeVariable(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
     }
 
@@ -44,8 +35,4 @@ public class TypeVariable extends Type {
         return name;
     }
 
-//    @Override
-//    public Subst unifies(Type type) {
-//        return bind(this, type);
-//    }
 }

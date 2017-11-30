@@ -19,30 +19,6 @@ public class Let extends Expr {
         this.rightExpr = rightExpr;
     }
 
-    public Var getVariable() {
-        return variable;
-    }
-
-    public void setVariable(Var variable) {
-        this.variable = variable;
-    }
-
-    public Expr getLeftExpr() {
-        return leftExpr;
-    }
-
-    public void setLeftExpr(Expr leftExpr) {
-        this.leftExpr = leftExpr;
-    }
-
-    public Expr getRightExpr() {
-        return rightExpr;
-    }
-
-    public void setRightExpr(Expr rightExpr) {
-        this.rightExpr = rightExpr;
-    }
-
     public Type infer(TypeInfer typeInfer) {
         //ask = typeInfer
         Type t1 = leftExpr.infer(typeInfer);

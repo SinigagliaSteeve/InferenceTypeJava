@@ -16,10 +16,6 @@ public class TypeCon extends Type {
         this.nameType = nameType;
     }
 
-    public String getNameType() {
-        return nameType;
-    }
-
     @Override
     public TypeCon apply(Subst subst) {
         return this;
@@ -35,8 +31,4 @@ public class TypeCon extends Type {
         return nameType;
     }
 
-//    @Override
-//    public Subst unifies(Type type) {
-//        throw new UnificationFailException(this, type);
-//    }
 }

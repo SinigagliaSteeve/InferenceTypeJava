@@ -15,22 +15,6 @@ public class Lam extends Expr {
         this.expression = expression;
     }
 
-    public Var getVariable() {
-        return variable;
-    }
-
-    public void setVariable(Var variable) {
-        this.variable = variable;
-    }
-
-    public Expr getExpression() {
-        return expression;
-    }
-
-    public void setExpression(Expr expression) {
-        this.expression = expression;
-    }
-
     public Type infer(TypeInfer typeInfer) {
         TypeVariable tv = typeInfer.createFreshTypeVariable();
         TypeInfer localEnv = typeInfer.inEnv(this.variable, Scheme.forAll(tv));
@@ -38,11 +22,4 @@ public class Lam extends Expr {
         return new TypeArrow(tv, res);
     }
 
-
-//    @Override
-//    public Type infer() {
-//        TypeVariable tv = TypeInfer.getInstance().getEnv().createFreshTypeVariable();
-//
-//        return null;
-//    }
 }

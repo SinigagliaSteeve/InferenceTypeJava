@@ -16,10 +16,6 @@ public abstract class Literal<T> extends Expr {
         this.type = type;
     }
 
-    public T getValue() {
-        return value;
-    }
-
     public Type getType() {
         return type;
     }

@@ -40,13 +40,14 @@ public class Subst implements Substituable<Subst> {
     @Override
     public Subst apply(Subst subst) {
         //TODO
+        System.out.println("PASSED IN APPLY OF SUBST");
         return null;
     }
 
     @Override
     public HashSet<TypeVariable> ftv() {
         HashSet<TypeVariable> set = new HashSet<>();
-        subst.values().forEach(type -> set.addAll(type.ftv())); // TODO Check ordonancement
+        subst.values().forEach(type -> set.addAll(type.ftv()));
         return set;
     }
 
