@@ -1,7 +1,6 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
 import fr.renaudSinigaglia.inferenceType.base.Var;
-import fr.renaudSinigaglia.inferenceType.unification.Unifiable;
 
 import java.util.*;
 

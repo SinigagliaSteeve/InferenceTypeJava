@@ -2,7 +2,6 @@ package fr.renaudSinigaglia.inferenceType.exception;
 
 import fr.renaudSinigaglia.inferenceType.typing.Type;
 import fr.renaudSinigaglia.inferenceType.typing.TypeVariable;
-import fr.renaudSinigaglia.inferenceType.unification.Unifiable;
 
 /**
  * Created by ssinigag on 29/11/17.

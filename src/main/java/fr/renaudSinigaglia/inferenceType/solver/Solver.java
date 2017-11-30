@@ -2,7 +2,7 @@ package fr.renaudSinigaglia.inferenceType.solver;
 
 import fr.renaudSinigaglia.inferenceType.substitution.Subst;
 import fr.renaudSinigaglia.inferenceType.typing.Constraint;
-import fr.renaudSinigaglia.inferenceType.unification.Unifiable;
+import fr.renaudSinigaglia.inferenceType.unification.Unifier;
 
 import java.util.List;
 
@@ -18,14 +18,13 @@ public class Solver {
 
 
     public Subst solver(Subst subst, List<Constraint> constraints) {
-        if(constraints.isEmpty()) {
+        if (constraints.isEmpty()) {
             return subst;
         }
 
         Constraint constraint = constraints.get(0);
         constraints.remove(0);
-        Unifiable unifiable = new Unifiable();
-        Subst su1 = unifiable.unifies(constraint);
+        Subst su1 = Unifier.unifies(constraint);
         return solver(subst.compose(su1), constraints);
     }
 }

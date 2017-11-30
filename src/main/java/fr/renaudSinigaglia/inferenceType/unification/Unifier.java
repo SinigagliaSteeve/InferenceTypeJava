@@ -11,9 +11,9 @@ import java.util.ArrayList;
 /**
  * Created by damien on 03/11/2017.
  */
-public class Unifiable {
+public class Unifier {
 
-    public Subst bind(TypeVariable tVar, Type type) {
+    public static Subst bind(TypeVariable tVar, Type type) {
         if (tVar.equals(type)) {
             return new Subst();
         }
@@ -23,7 +23,7 @@ public class Unifiable {
         return new Subst(tVar, type);
     }
 
-    public Subst unifies(Constraint constraint) {
+    public static Subst unifies(Constraint constraint) {
         if(constraint.getT1() == constraint.getT2()) {
             return new Subst();
         }
@@ -59,7 +59,7 @@ public class Unifiable {
         throw new UnificationFailException(constraint.getT1(), constraint.getT2());
     }
 
-    public Subst unifyMany(TypeList t1, TypeList t2) {
+    public static Subst unifyMany(TypeList t1, TypeList t2) {
         boolean t1IsNull = t1.isEmpty();
         boolean t2IsNull = t2.isEmpty();
         if(t1IsNull && t2IsNull){
