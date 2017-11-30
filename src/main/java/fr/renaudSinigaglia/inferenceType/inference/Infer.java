@@ -27,6 +27,7 @@ public class Infer {
      */
     private Infer(Infer parent) {
         constraints = parent.constraints;
+        tvs.addAll(parent.tvs);
         env = parent.env;
     }
 

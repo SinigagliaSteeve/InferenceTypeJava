@@ -9,6 +9,8 @@ import java.util.List;
 
 /**
  * Created by damien on 21/11/2017.
+ *
+ * Classe représentant les substitutions de notre algorithme
  */
 public class Substitution implements Substituable<Substitution> {
     private HashMap<TypeVariable, Type> substs = new HashMap<>();
@@ -30,6 +32,11 @@ public class Substitution implements Substituable<Substitution> {
         substs.put(tVar, type);
     }
 
+    /**
+     * Fusionner deux substitutions en appliquant la première à la seconde
+     * @param sub Une substitution
+     * @return Une nouvelle substitution composée
+     */
     public Substitution compose(Substitution sub) {
         Substitution s = new Substitution(sub);
         s.apply(this);

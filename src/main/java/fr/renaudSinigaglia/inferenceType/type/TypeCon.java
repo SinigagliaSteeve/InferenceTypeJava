@@ -7,6 +7,8 @@ import java.util.HashSet;
 /**
  * @author Sinigaglia Steeve
  * @version 1.0.0
+ *
+ * Classe représentant un type terminal
  */
 public class TypeCon extends Type {
     private String nameType;

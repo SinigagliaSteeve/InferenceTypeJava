@@ -7,6 +7,8 @@ import java.util.HashSet;
 
 /**
  * Created by damien on 03/11/2017.
+ *
+ * Notre objet représentant les variables de type
  */
 public class TypeVariable extends Type {
 
@@ -16,6 +18,11 @@ public class TypeVariable extends Type {
         this.name = name;
     }
 
+    /**
+     * On applique la substitution à notre variable de type
+     * @param substitution Une substitution
+     * @return Le type substitué
+     */
     @Override
     public Type apply(Substitution substitution) {
         Type t = substitution.getSubsts().get(this);

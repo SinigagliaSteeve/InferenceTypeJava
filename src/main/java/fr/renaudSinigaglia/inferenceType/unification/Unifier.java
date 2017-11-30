@@ -14,6 +14,13 @@ import java.util.ArrayList;
  */
 public class Unifier {
 
+    /**
+     * Méthode permettant de lier une variable de type à un type en créant une nouvelle substitution.
+     *
+     * @param tVar La variable de type
+     * @param type Le type
+     * @return Une nouvelle substitution
+     */
     public static Substitution bind(TypeVariable tVar, Type type) {
         if (tVar.equals(type)) {
             return new Substitution();
@@ -24,6 +31,11 @@ public class Unifier {
         return new Substitution(tVar, type);
     }
 
+    /**
+     * Méthode permettant d'unifier les types pour uen contrainte donnée.
+     * @param constraint Une contrainte
+     * @return Une nouvelle substitution pour "appliquer" la contrainte à nos types
+     */
     public static Substitution unifies(Constraint constraint) {
         if(constraint.getT1() == constraint.getT2()) {
             return new Substitution();
@@ -60,6 +72,13 @@ public class Unifier {
         throw new UnificationFailException(constraint.getT1(), constraint.getT2());
     }
 
+    /**
+     * Méthode permettant de gérer les cas multi-types comme les TypeArrow (ex: x -> y)
+     * On utilise ici la classe TypeList qui permet de plus facilement gérer tous les cas
+     * @param t1 Une typeList
+     * @param t2 Une deuxième typeList
+     * @return Une substitution
+     */
     public static Substitution unifyMany(TypeList t1, TypeList t2) {
         boolean t1IsNull = t1.isEmpty();
         boolean t2IsNull = t2.isEmpty();
