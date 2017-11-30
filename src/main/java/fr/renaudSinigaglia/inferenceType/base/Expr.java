@@ -16,6 +16,7 @@ public abstract class Expr {
         Type type = infer(infer);
         Solver solver = new Solver();
         Substitution substitution = solver.runSolve(infer.getConstraints());
+        System.out.println("Last substitution : " + substitution);
         return type.apply(substitution);
     }
 

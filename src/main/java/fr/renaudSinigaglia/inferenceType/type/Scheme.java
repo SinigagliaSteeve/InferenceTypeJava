@@ -29,7 +29,7 @@ public class Scheme implements Substituable<Scheme> {
      */
     public static Scheme forAll(Type type, TypeVariable... variables) {
         if (variables.length == 0) {
-            return new Scheme(Collections.<TypeVariable>emptyList(), type);
+            return new Scheme(Collections.emptyList(), type);
         }
 
         return new Scheme(Arrays.asList(variables), type);

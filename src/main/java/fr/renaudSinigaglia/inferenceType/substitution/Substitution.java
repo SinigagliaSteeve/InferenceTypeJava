@@ -6,6 +6,7 @@ import fr.renaudSinigaglia.inferenceType.type.TypeVariable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by damien on 21/11/2017.
@@ -19,6 +20,13 @@ public class Substitution implements Substituable<Substitution> {
         for (int i = 0; i < variables.size(); i++) {
             substs.put(variables.get(i), freshVariables.get(i));
         }
+
+        System.out.print("New Substitution ( ");
+        for (TypeVariable tv : substs.keySet()) {
+            System.out.print("("+tv+", "+substs.get(tv)+") ");
+        }
+        System.out.println(")");
+
     }
 
     public Substitution() {
@@ -26,6 +34,11 @@ public class Substitution implements Substituable<Substitution> {
 
     private Substitution(Substitution prev) {
         substs.putAll(prev.substs);
+        System.out.print("New Substitution (");
+        for (TypeVariable tv : substs.keySet()) {
+            System.out.print("("+tv+", "+substs.get(tv)+")");
+        }
+        System.out.println(")");
     }
 
     public Substitution(TypeVariable tVar, Type type) {
@@ -38,16 +51,18 @@ public class Substitution implements Substituable<Substitution> {
      * @return Une nouvelle substitution composée
      */
     public Substitution compose(Substitution sub) {
-        Substitution s = new Substitution(sub);
-        s.apply(this);
-        substs.putAll(s.substs);
-        return this;
+        Substitution result = new Substitution(sub.apply(this));
+        result.substs.putAll(this.substs);
+        return result;
     }
 
     @Override
     public Substitution apply(Substitution substitution) {
-        this.substs.keySet().stream().forEach(tv -> tv.apply(substitution));
-        return this;
+        Substitution result = new Substitution();
+        for (Map.Entry<TypeVariable,Type> typeVariableTypeEntry : substs.entrySet()) {
+            result.substs.put(typeVariableTypeEntry.getKey(), typeVariableTypeEntry.getValue().apply(substitution));
+        }
+        return result;
     }
 
     @Override
@@ -59,5 +74,10 @@ public class Substitution implements Substituable<Substitution> {
 
     public HashMap<TypeVariable, Type> getSubsts() {
         return substs;
+    }
+
+    @Override
+    public String toString() {
+        return "Substitution(" + substs + ')';
     }
 }

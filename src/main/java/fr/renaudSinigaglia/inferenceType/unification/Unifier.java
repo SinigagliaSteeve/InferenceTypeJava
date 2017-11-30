@@ -8,6 +8,7 @@ import fr.renaudSinigaglia.inferenceType.exception.InfiniteTypeException;
 import fr.renaudSinigaglia.inferenceType.type.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by damien on 03/11/2017.
@@ -37,7 +38,7 @@ public class Unifier {
      * @return Une nouvelle substitution pour "appliquer" la contrainte à nos types
      */
     public static Substitution unifies(Constraint constraint) {
-        if(constraint.getT1() == constraint.getT2()) {
+        if(constraint.getT1().equals(constraint.getT2())) {
             return new Substitution();
         }
 
@@ -90,8 +91,13 @@ public class Unifier {
             throw new UnificationMismatchException(t1, t2);
         }
 
-        Substitution su1 = unifies(new Constraint(t1.head(), t2.head()));
-        Substitution su2 = unifyMany(t1.apply(su1), t2.apply(su1));
+        Type t1Head = t1.head();
+        Type t2Head = t2.head();
+        Substitution su1 = unifies(new Constraint(t1Head, t2Head));
+        System.out.println("unifyMany substitution (after unifies (" + t1Head + ") & (" + t2Head + ")) -> " + su1);
+        TypeList t1Susbtitued = t1.apply(su1);
+        TypeList t2Susbtitued = t2.apply(su1);
+        Substitution su2 = unifyMany(t1Susbtitued, t2Susbtitued);
         return su2.compose(su1);
     }
 }

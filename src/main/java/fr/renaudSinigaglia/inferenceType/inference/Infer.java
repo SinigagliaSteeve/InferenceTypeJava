@@ -12,7 +12,6 @@ import java.util.*;
 public class Infer {
 
     private List<Constraint> constraints;
-    private List<TypeVariable> tvs = new ArrayList();
     private Env env;
 
 
@@ -23,14 +22,12 @@ public class Infer {
 
     private Infer(Infer parent) {
         constraints = parent.constraints;
-        tvs.addAll(parent.tvs);
         env = parent.env;
     }
 
 
     public TypeVariable createFreshTypeVariable() {
         TypeVariable tv = FreshVariableBuilder.createFreshTypeVariable();
-        tvs.add(tv);
         return tv;
     }
 
@@ -63,6 +60,12 @@ public class Infer {
     }
 
     public void uni(Type t1, Type t2) {
+        System.out.println("New Constraint ( " + t1 + ", " + t2 + ")");
         this.constraints.add(new Constraint(t1, t2));
+    }
+
+    public void removeTypeFromEnv(Var variable) {
+        Infer local = new Infer(this);
+        local.env.remove(variable);
     }
 }

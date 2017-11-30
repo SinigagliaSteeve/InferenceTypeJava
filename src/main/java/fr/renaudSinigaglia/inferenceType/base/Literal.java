@@ -25,4 +25,8 @@ public abstract class Literal<T> extends Expr {
         return this.type;
     }
 
+    @Override
+    public String toString() {
+        return type.toString();
+    }
 }

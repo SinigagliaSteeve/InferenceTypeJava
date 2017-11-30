@@ -37,7 +37,7 @@ public class Solver {
 
         Constraint constraint = constraints.get(0);
         constraints.remove(0);
-        Substitution su1 = Unifier.unifies(constraint);
+        Substitution su1 = Unifier.unifies(constraint.apply(substitution));
         return solve(substitution.compose(su1), constraints);
     }
 }

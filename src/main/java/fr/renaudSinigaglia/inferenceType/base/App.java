@@ -26,4 +26,8 @@ public class App extends Expr {
         return tv;
     }
 
+    @Override
+    public String toString() {
+        return "App("+leftExpr+", "+rightExpr+")";
+    }
 }

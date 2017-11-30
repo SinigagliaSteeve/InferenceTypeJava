@@ -43,5 +43,24 @@ public class TypeArrow extends Type {
     public String toString() {
         return typeLeft + " -> " + typeRight;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TypeArrow typeArrow = (TypeArrow) o;
+
+        if (typeLeft != null ? !typeLeft.equals(typeArrow.typeLeft) : typeArrow.typeLeft != null) return false;
+        return typeRight != null ? typeRight.equals(typeArrow.typeRight) : typeArrow.typeRight == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = typeLeft != null ? typeLeft.hashCode() : 0;
+        result = 31 * result + (typeRight != null ? typeRight.hashCode() : 0);
+        return result;
+    }
 }
 

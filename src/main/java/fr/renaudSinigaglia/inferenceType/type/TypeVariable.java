@@ -25,11 +25,7 @@ public class TypeVariable extends Type {
      */
     @Override
     public Type apply(Substitution substitution) {
-        Type t = substitution.getSubsts().get(this);
-        if (t != null) {
-            return t;
-        }
-        return this;
+        return substitution.getSubsts().getOrDefault(this, this);
     }
 
     @Override
@@ -42,4 +38,19 @@ public class TypeVariable extends Type {
         return name;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TypeVariable that = (TypeVariable) o;
+
+        return name != null ? name.equals(that.name) : that.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    }
 }

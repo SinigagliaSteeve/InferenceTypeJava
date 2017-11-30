@@ -1,5 +1,6 @@
 package fr.renaudSinigaglia.inferenceType.base;
 
+import fr.renaudSinigaglia.inferenceType.type.Scheme;
 import fr.renaudSinigaglia.inferenceType.type.Type;
 import fr.renaudSinigaglia.inferenceType.inference.Infer;
 
@@ -16,6 +17,14 @@ public class Var extends Expr {
 
     @Override
     public Type infer(Infer infer) {
-        return infer.lookupEnv(this).instantiate(infer);
+        Scheme scheme = infer.lookupEnv(this);
+        Type instantiate = scheme.instantiate(infer);
+        System.out.println("type of : " + this + " => " + instantiate);
+        return instantiate;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

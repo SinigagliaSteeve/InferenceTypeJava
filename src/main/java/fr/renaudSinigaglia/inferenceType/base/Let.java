@@ -27,4 +27,9 @@ public class Let extends Expr {
         Type t2 = rightExpr.infer(localEnv);
         return t2;
     }
+
+    @Override
+    public String toString() {
+        return "Let("+variable+" = " + leftExpr + " in " + rightExpr + ")";
+    }
 }

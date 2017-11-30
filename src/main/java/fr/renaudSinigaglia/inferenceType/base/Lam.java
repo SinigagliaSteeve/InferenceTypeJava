@@ -20,7 +20,12 @@ public class Lam extends Expr {
         TypeVariable tv = infer.createFreshTypeVariable();
         Infer localEnv = infer.inEnv(this.variable, Scheme.forAll(tv));
         Type res = expression.infer(localEnv);
+        infer.removeTypeFromEnv(this.variable);
         return new TypeArrow(tv, res);
     }
 
+    @Override
+    public String toString() {
+        return "Lam(\\"+variable+" -> "+expression+")";
+    }
 }

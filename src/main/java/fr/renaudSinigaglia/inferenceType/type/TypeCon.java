@@ -32,4 +32,18 @@ public class TypeCon extends Type {
         return nameType;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TypeCon typeCon = (TypeCon) o;
+
+        return nameType != null ? nameType.equals(typeCon.nameType) : typeCon.nameType == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return nameType != null ? nameType.hashCode() : 0;
+    }
 }
