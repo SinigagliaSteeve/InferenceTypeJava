@@ -3,7 +3,7 @@ package fr.renaudSinigaglia.inferenceType.typing;
 import fr.renaudSinigaglia.inferenceType.substitution.Subst;
 import fr.renaudSinigaglia.inferenceType.substitution.Substituable;
 import fr.renaudSinigaglia.inferenceType.base.Var;
-import fr.renaudSinigaglia.inferenceType.exception.UnboundVariable;
+import fr.renaudSinigaglia.inferenceType.exception.UnboundVariableException;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -26,7 +26,7 @@ public class TypeEnv implements Substituable<TypeEnv>{
     public Scheme lookup(Var variable) {
         Scheme scheme = env.get(variable);
         if (scheme == null) {
-            throw new UnboundVariable(variable);
+            throw new UnboundVariableException(variable);
         }
         return scheme;
     }

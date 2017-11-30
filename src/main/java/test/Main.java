@@ -5,6 +5,7 @@ import fr.renaudSinigaglia.inferenceType.base.Lam;
 import fr.renaudSinigaglia.inferenceType.base.Let;
 import fr.renaudSinigaglia.inferenceType.base.Var;
 import fr.renaudSinigaglia.inferenceType.base.lit.Bool;
+import fr.renaudSinigaglia.inferenceType.base.lit.Int;
 import fr.renaudSinigaglia.inferenceType.solver.Solver;
 import fr.renaudSinigaglia.inferenceType.substitution.Subst;
 import fr.renaudSinigaglia.inferenceType.typing.Type;
@@ -18,34 +19,26 @@ public class Main {
     public static void main(String[] args) {
 
         // let f = (\x -> x) in (\z y -> z) (f True) (f (1::Int))
-        Solver solver = new Solver();
 
         // True
         Bool boolExp = new Bool(true);
-        Type t = boolExp.infer();
+        Type t = boolExp.runInfer();
         System.out.println(t);
 
         // (\x -> True)
         Lam lamExp = new Lam(new Var("x"),boolExp);
-        Type t2 = lamExp.infer();
+        Type t2 = lamExp.runInfer();
         System.out.println(t2);
 
         // let f = (\x -> x) in (f True)
         Var f = new Var("f");
         Var x = new Var("x");
         Lam l = new Lam(x, x);
-        App app = new App(f, new Bool(true));
+        App app = new App(f, new Int(4));
         Let expFinal = new Let(f, l, app);
 
-        TypeInfer infer = new TypeInfer();
-        Type t3 = expFinal.infer(infer);
-
-
-
-        Subst s = solver.runSolve(infer.getConstraints());
-
-        Type theType = t3.apply(s);
+        Type t3 = expFinal.runInfer();
         System.out.println(t3);
-        System.out.println(theType);
+
     }
 }
