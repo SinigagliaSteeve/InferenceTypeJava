@@ -1,0 +1,136 @@
+@startuml
+
+package "base" {
+
+
+    abstract class Expr {
+        - Type : runInfer()
+        + {abstract} Type : infer(Infer infer)
+    }
+
+    class App extends Expr {
+        - Expr : leftExpr
+        - Expr : rightExpr
+        <<cons>> (Expr, Expr)
+    }
+
+
+    class Lam extends Expr {
+        - Var : variable
+        - Expr : expression
+        <<cons>> (Var, Expr)
+    }
+
+    class Let extends Expr {
+        - Var : variable
+        - Expr : leftExpr
+        - Expr : rightExpr
+        <<cons>> (Var, Expr, Expr)
+    }
+
+    abstract class Lit<T> extends Expr {
+        - Type : type
+        - T : value
+        <<cons>> (T, Type)
+    }
+
+    class Var extends Expr {
+        - String : name
+        <<cons>> (String)
+    }
+
+        package "lit" {
+            class Bool extends Lit
+            class Int extends Lit
+        }
+}
+
+package substitution {
+    interface Substituable<T> {
+        T : apply(Substitution substitution)
+        HashSet<TypeVariable> : ftv()
+    }
+
+    class Substitution implements Substituable {
+        - HashMap<TypeVariable, Type> : substs
+    }
+
+
+}
+package type {
+    abstract class Type implements Substituable {
+    }
+
+    class TypeArrow extends Type {
+        - Type : typeLeft
+        - Type : typeRight
+    }
+
+    class TypeCon extends Type {
+        - String : nameType
+    }
+
+    class TypeVariable extends Type {
+        - String : name
+    }
+
+    class TypeList {
+        - List<Type> : typeList
+        + Type : head()
+    }
+
+    class Scheme implements Substituable{
+        - List<TypeVariable> : variables;
+        - Type : type
+        + Type : instantiate(Infer env)
+    }
+}
+
+package "unification" {
+    class Unifier {
+        {static} + Substitution : bind(TypeVariable, Type)
+        {static} + Substitution : unifies(Constraint constraint)
+        {static} + Substitution : unifyMany(TypeList, TypeList)
+    }
+}
+
+package "solver" {
+    class Constraint implements Substituable {
+        - Type : t1
+        - Type : t2
+    }
+
+    class Solver {
+        + Substitution : runSolve(List<Constraint>)
+        + Substitution : solve(Substitution, List<Constraint>)
+    }
+}
+
+package "inference" {
+    class Env implements Substituable {
+        - HashMap<Var,Scheme> : env
+        + Scheme : lookup(Var)
+        + remove(Var)
+        + extend(Var, Scheme)
+    }
+
+    class Infer {
+        - List<Constraint : constraints
+        - List<TypeVariable> : tvs
+        - Env : env
+        + <<cons>> ()
+        - <<cons>> (Infer parent)
+        + Infer : inEnv(Var, Scheme)
+        + Scheme : lookupEnv(Var)
+        + Scheme : generalize(Type type)
+        + uni(Type, Type)
+    }
+}
+
+package "exception" #ddd {
+    class InfiniteTypeException
+    class UnboundVariableException
+    class UnificationFailException
+    class UnificationMismatchException
+}
+@enduml
