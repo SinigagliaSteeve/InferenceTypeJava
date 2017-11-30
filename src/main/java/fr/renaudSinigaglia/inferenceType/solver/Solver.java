@@ -20,7 +20,7 @@ public class Solver {
      */
     public Substitution runSolve(List<Constraint> constraints) {
         Substitution emptySubstitution = new Substitution();
-        return solver(emptySubstitution, constraints);
+        return solve(emptySubstitution, constraints);
     }
 
 
@@ -30,7 +30,7 @@ public class Solver {
      * @param constraints la liste des contraintes
      * @return une substitution
      */
-    public Substitution solver(Substitution substitution, List<Constraint> constraints) {
+    public Substitution solve(Substitution substitution, List<Constraint> constraints) {
         if (constraints.isEmpty()) {
             return substitution;
         }
@@ -38,6 +38,6 @@ public class Solver {
         Constraint constraint = constraints.get(0);
         constraints.remove(0);
         Substitution su1 = Unifier.unifies(constraint);
-        return solver(substitution.compose(su1), constraints);
+        return solve(substitution.compose(su1), constraints);
     }
 }
