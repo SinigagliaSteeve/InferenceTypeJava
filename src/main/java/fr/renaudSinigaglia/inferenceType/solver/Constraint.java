@@ -1,7 +1,9 @@
-package fr.renaudSinigaglia.inferenceType.typing;
+package fr.renaudSinigaglia.inferenceType.solver;
 
-import fr.renaudSinigaglia.inferenceType.substitution.Subst;
+import fr.renaudSinigaglia.inferenceType.substitution.Substitution;
 import fr.renaudSinigaglia.inferenceType.substitution.Substituable;
+import fr.renaudSinigaglia.inferenceType.type.Type;
+import fr.renaudSinigaglia.inferenceType.type.TypeVariable;
 
 import java.util.HashSet;
 
@@ -19,11 +21,11 @@ public class Constraint implements Substituable<Constraint>{
     }
 
     @Override
-    public Constraint apply(Subst subst) {
+    public Constraint apply(Substitution substitution) {
         // TODO WARNING C'est étrange
         System.out.println("PASSED IN APPLY CONSTRAINT");
-        Type tLeft = t1.apply(subst);
-        Type tRight = t2.apply(subst);
+        Type tLeft = t1.apply(substitution);
+        Type tRight = t2.apply(substitution);
         return new Constraint(tLeft, tRight);
     }
 

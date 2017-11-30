@@ -1,9 +1,9 @@
 package fr.renaudSinigaglia.inferenceType.base;
 
-import fr.renaudSinigaglia.inferenceType.typing.Type;
-import fr.renaudSinigaglia.inferenceType.typing.TypeArrow;
-import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
-import fr.renaudSinigaglia.inferenceType.typing.TypeVariable;
+import fr.renaudSinigaglia.inferenceType.inference.Infer;
+import fr.renaudSinigaglia.inferenceType.type.Type;
+import fr.renaudSinigaglia.inferenceType.type.TypeArrow;
+import fr.renaudSinigaglia.inferenceType.type.TypeVariable;
 
 /**
  * @author Sinigaglia Steeve
@@ -18,11 +18,11 @@ public class App extends Expr {
         this.rightExpr = rightExpr;
     }
 
-    public Type infer(TypeInfer typeInfer) {
-        Type t1 = leftExpr.infer(typeInfer);
-        Type tr = rightExpr.infer(typeInfer);
-        TypeVariable tv = typeInfer.createFreshTypeVariable();
-        typeInfer.uni(t1, new TypeArrow(tr, tv));
+    public Type infer(Infer infer) {
+        Type t1 = leftExpr.infer(infer);
+        Type tr = rightExpr.infer(infer);
+        TypeVariable tv = infer.createFreshTypeVariable();
+        infer.uni(t1, new TypeArrow(tr, tv));
         return tv;
     }
 

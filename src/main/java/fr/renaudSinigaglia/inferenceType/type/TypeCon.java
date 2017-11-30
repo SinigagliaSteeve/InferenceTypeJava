@@ -1,7 +1,6 @@
-package fr.renaudSinigaglia.inferenceType.typing;
+package fr.renaudSinigaglia.inferenceType.type;
 
-import fr.renaudSinigaglia.inferenceType.substitution.Subst;
-import fr.renaudSinigaglia.inferenceType.exception.UnificationFailException;
+import fr.renaudSinigaglia.inferenceType.substitution.Substitution;
 
 import java.util.HashSet;
 
@@ -17,7 +16,7 @@ public class TypeCon extends Type {
     }
 
     @Override
-    public TypeCon apply(Subst subst) {
+    public TypeCon apply(Substitution substitution) {
         return this;
     }
 

@@ -1,7 +1,7 @@
 package fr.renaudSinigaglia.inferenceType.base;
 
-import fr.renaudSinigaglia.inferenceType.typing.Type;
-import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
+import fr.renaudSinigaglia.inferenceType.inference.Infer;
+import fr.renaudSinigaglia.inferenceType.type.Type;
 
 /**
  * @author Sinigaglia Steeve
@@ -21,7 +21,7 @@ public abstract class Literal<T> extends Expr {
     }
 
     @Override
-    public Type infer(TypeInfer typeInfer) {
+    public Type infer(Infer infer) {
         return this.type;
     }
 

@@ -1,6 +1,6 @@
 package fr.renaudSinigaglia.inferenceType.exception;
 
-import fr.renaudSinigaglia.inferenceType.typing.TypeList;
+import fr.renaudSinigaglia.inferenceType.type.TypeList;
 
 /**
  * Created by ssinigag on 29/11/17.

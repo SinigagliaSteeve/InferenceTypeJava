@@ -1,8 +1,7 @@
 package fr.renaudSinigaglia.inferenceType.base.lit;
 
 import fr.renaudSinigaglia.inferenceType.base.Literal;
-import fr.renaudSinigaglia.inferenceType.typing.Type;
-import fr.renaudSinigaglia.inferenceType.typing.TypeCon;
+import fr.renaudSinigaglia.inferenceType.type.TypeCon;
 
 /**
  * @author Sinigaglia Steeve

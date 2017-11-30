@@ -6,10 +6,7 @@ import fr.renaudSinigaglia.inferenceType.base.Let;
 import fr.renaudSinigaglia.inferenceType.base.Var;
 import fr.renaudSinigaglia.inferenceType.base.lit.Bool;
 import fr.renaudSinigaglia.inferenceType.base.lit.Int;
-import fr.renaudSinigaglia.inferenceType.solver.Solver;
-import fr.renaudSinigaglia.inferenceType.substitution.Subst;
-import fr.renaudSinigaglia.inferenceType.typing.Type;
-import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
+import fr.renaudSinigaglia.inferenceType.type.Type;
 
 /**
  * Created by damien on 29/10/2017.

@@ -2,9 +2,10 @@ package fr.renaudSinigaglia.inferenceType.unification;
 
 import fr.renaudSinigaglia.inferenceType.exception.UnificationFailException;
 import fr.renaudSinigaglia.inferenceType.exception.UnificationMismatchException;
-import fr.renaudSinigaglia.inferenceType.substitution.Subst;
+import fr.renaudSinigaglia.inferenceType.solver.Constraint;
+import fr.renaudSinigaglia.inferenceType.substitution.Substitution;
 import fr.renaudSinigaglia.inferenceType.exception.InfiniteTypeException;
-import fr.renaudSinigaglia.inferenceType.typing.*;
+import fr.renaudSinigaglia.inferenceType.type.*;
 
 import java.util.ArrayList;
 
@@ -13,19 +14,19 @@ import java.util.ArrayList;
  */
 public class Unifier {
 
-    public static Subst bind(TypeVariable tVar, Type type) {
+    public static Substitution bind(TypeVariable tVar, Type type) {
         if (tVar.equals(type)) {
-            return new Subst();
+            return new Substitution();
         }
         if (type.ftv().contains(tVar)) {
             throw new InfiniteTypeException(tVar, type);
         }
-        return new Subst(tVar, type);
+        return new Substitution(tVar, type);
     }
 
-    public static Subst unifies(Constraint constraint) {
+    public static Substitution unifies(Constraint constraint) {
         if(constraint.getT1() == constraint.getT2()) {
-            return new Subst();
+            return new Substitution();
         }
 
         if(constraint.getT2() instanceof TypeVariable) {
@@ -59,19 +60,19 @@ public class Unifier {
         throw new UnificationFailException(constraint.getT1(), constraint.getT2());
     }
 
-    public static Subst unifyMany(TypeList t1, TypeList t2) {
+    public static Substitution unifyMany(TypeList t1, TypeList t2) {
         boolean t1IsNull = t1.isEmpty();
         boolean t2IsNull = t2.isEmpty();
         if(t1IsNull && t2IsNull){
-            return new Subst();
+            return new Substitution();
         }
 
         if(t1IsNull || t2IsNull) {
             throw new UnificationMismatchException(t1, t2);
         }
 
-        Subst su1 = unifies(new Constraint(t1.head(), t2.head()));
-        Subst su2 = unifyMany(t1.apply(su1), t2.apply(su1));
+        Substitution su1 = unifies(new Constraint(t1.head(), t2.head()));
+        Substitution su2 = unifyMany(t1.apply(su1), t2.apply(su1));
         return su2.compose(su1);
     }
 }

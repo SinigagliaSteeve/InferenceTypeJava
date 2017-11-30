@@ -1,10 +1,7 @@
-package fr.renaudSinigaglia.inferenceType.typing;
+package fr.renaudSinigaglia.inferenceType.type;
 
-import fr.renaudSinigaglia.inferenceType.substitution.Subst;
+import fr.renaudSinigaglia.inferenceType.substitution.Substitution;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,8 +20,8 @@ public class TypeList {
         return typeList.isEmpty();
     }
 
-    public TypeList apply(Subst subst) {
-        return new TypeList(typeList.stream().map(type -> type.apply(subst)).collect(Collectors.toList()));
+    public TypeList apply(Substitution substitution) {
+        return new TypeList(typeList.stream().map(type -> type.apply(substitution)).collect(Collectors.toList()));
     }
 
     // get HEAD of list

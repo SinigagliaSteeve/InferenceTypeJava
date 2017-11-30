@@ -1,4 +1,4 @@
-package fr.renaudSinigaglia.inferenceType.typing;
+package fr.renaudSinigaglia.inferenceType.type;
 
 import fr.renaudSinigaglia.inferenceType.substitution.Substituable;
 

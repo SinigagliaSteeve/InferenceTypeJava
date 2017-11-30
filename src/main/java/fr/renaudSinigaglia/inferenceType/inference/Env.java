@@ -1,9 +1,11 @@
-package fr.renaudSinigaglia.inferenceType.typing;
+package fr.renaudSinigaglia.inferenceType.inference;
 
-import fr.renaudSinigaglia.inferenceType.substitution.Subst;
+import fr.renaudSinigaglia.inferenceType.substitution.Substitution;
 import fr.renaudSinigaglia.inferenceType.substitution.Substituable;
 import fr.renaudSinigaglia.inferenceType.base.Var;
 import fr.renaudSinigaglia.inferenceType.exception.UnboundVariableException;
+import fr.renaudSinigaglia.inferenceType.type.Scheme;
+import fr.renaudSinigaglia.inferenceType.type.TypeVariable;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,14 +14,14 @@ import java.util.HashSet;
  * @author Sinigaglia Steeve
  * @version 1.0.0
  */
-public class TypeEnv implements Substituable<TypeEnv>{
+public class Env implements Substituable<Env>{
     private HashMap<Var, Scheme> env;
 
-    public TypeEnv() {
+    public Env() {
         this.env = new HashMap<Var, Scheme>();
     }
 
-    public TypeEnv(HashMap<Var, Scheme> newMap) {
+    public Env(HashMap<Var, Scheme> newMap) {
         this.env = newMap;
     }
 
@@ -32,13 +34,13 @@ public class TypeEnv implements Substituable<TypeEnv>{
     }
 
     @Override
-    public TypeEnv apply(Subst subst) {
+    public Env apply(Substitution substitution) {
 
         HashMap<Var, Scheme> newMap = new HashMap<>();
         for (Var var : env.keySet()) {
-            newMap.put(var, env.get(var).apply(subst));
+            newMap.put(var, env.get(var).apply(substitution));
         }
-        return new TypeEnv(newMap);
+        return new Env(newMap);
     }
 
     @Override

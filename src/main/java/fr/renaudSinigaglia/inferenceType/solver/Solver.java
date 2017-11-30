@@ -1,7 +1,6 @@
 package fr.renaudSinigaglia.inferenceType.solver;
 
-import fr.renaudSinigaglia.inferenceType.substitution.Subst;
-import fr.renaudSinigaglia.inferenceType.typing.Constraint;
+import fr.renaudSinigaglia.inferenceType.substitution.Substitution;
 import fr.renaudSinigaglia.inferenceType.unification.Unifier;
 
 import java.util.List;
@@ -11,20 +10,20 @@ import java.util.List;
  */
 public class Solver {
 
-    public Subst runSolve(List<Constraint> constraints) {
-        Subst emptySubst = new Subst();
-        return solver(emptySubst, constraints);
+    public Substitution runSolve(List<Constraint> constraints) {
+        Substitution emptySubstitution = new Substitution();
+        return solver(emptySubstitution, constraints);
     }
 
 
-    public Subst solver(Subst subst, List<Constraint> constraints) {
+    public Substitution solver(Substitution substitution, List<Constraint> constraints) {
         if (constraints.isEmpty()) {
-            return subst;
+            return substitution;
         }
 
         Constraint constraint = constraints.get(0);
         constraints.remove(0);
-        Subst su1 = Unifier.unifies(constraint);
-        return solver(subst.compose(su1), constraints);
+        Substitution su1 = Unifier.unifies(constraint);
+        return solver(substitution.compose(su1), constraints);
     }
 }

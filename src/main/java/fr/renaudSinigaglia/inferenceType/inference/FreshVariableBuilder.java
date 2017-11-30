@@ -1,4 +1,6 @@
-package fr.renaudSinigaglia.inferenceType.typing;
+package fr.renaudSinigaglia.inferenceType.inference;
+
+import fr.renaudSinigaglia.inferenceType.type.TypeVariable;
 
 /**
  * @author Sinigaglia Steeve

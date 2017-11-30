@@ -1,7 +1,7 @@
 package fr.renaudSinigaglia.inferenceType.substitution;
 
-import fr.renaudSinigaglia.inferenceType.typing.Type;
-import fr.renaudSinigaglia.inferenceType.typing.TypeVariable;
+import fr.renaudSinigaglia.inferenceType.type.Type;
+import fr.renaudSinigaglia.inferenceType.type.TypeVariable;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,36 +10,36 @@ import java.util.List;
 /**
  * Created by damien on 21/11/2017.
  */
-public class Subst implements Substituable<Subst> {
+public class Substitution implements Substituable<Substitution> {
     private HashMap<TypeVariable, Type> substs = new HashMap<>();
 
-    public Subst(List<TypeVariable> variables, List<TypeVariable> freshVariables) {
+    public Substitution(List<TypeVariable> variables, List<TypeVariable> freshVariables) {
         for (int i = 0; i < variables.size(); i++) {
             substs.put(variables.get(i), freshVariables.get(i));
         }
     }
 
-    public Subst() {
+    public Substitution() {
     }
 
-    private Subst(Subst prev) {
+    private Substitution(Substitution prev) {
         substs.putAll(prev.substs);
     }
 
-    public Subst(TypeVariable tVar, Type type) {
+    public Substitution(TypeVariable tVar, Type type) {
         substs.put(tVar, type);
     }
 
-    public Subst compose(Subst sub) {
-        Subst s = new Subst(sub);
+    public Substitution compose(Substitution sub) {
+        Substitution s = new Substitution(sub);
         s.apply(this);
         substs.putAll(s.substs);
         return this;
     }
 
     @Override
-    public Subst apply(Subst subst) {
-        this.substs.keySet().stream().forEach(tv -> tv.apply(subst));
+    public Substitution apply(Substitution substitution) {
+        this.substs.keySet().stream().forEach(tv -> tv.apply(substitution));
         return this;
     }
 

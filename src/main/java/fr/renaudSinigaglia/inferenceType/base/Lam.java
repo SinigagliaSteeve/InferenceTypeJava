@@ -1,6 +1,7 @@
 package fr.renaudSinigaglia.inferenceType.base;
 
-import fr.renaudSinigaglia.inferenceType.typing.*;
+import fr.renaudSinigaglia.inferenceType.inference.Infer;
+import fr.renaudSinigaglia.inferenceType.type.*;
 
 /**
  * @author Sinigaglia Steeve
@@ -15,9 +16,9 @@ public class Lam extends Expr {
         this.expression = expression;
     }
 
-    public Type infer(TypeInfer typeInfer) {
-        TypeVariable tv = typeInfer.createFreshTypeVariable();
-        TypeInfer localEnv = typeInfer.inEnv(this.variable, Scheme.forAll(tv));
+    public Type infer(Infer infer) {
+        TypeVariable tv = infer.createFreshTypeVariable();
+        Infer localEnv = infer.inEnv(this.variable, Scheme.forAll(tv));
         Type res = expression.infer(localEnv);
         return new TypeArrow(tv, res);
     }

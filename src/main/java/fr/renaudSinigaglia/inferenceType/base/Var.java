@@ -1,7 +1,7 @@
 package fr.renaudSinigaglia.inferenceType.base;
 
-import fr.renaudSinigaglia.inferenceType.typing.Type;
-import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
+import fr.renaudSinigaglia.inferenceType.type.Type;
+import fr.renaudSinigaglia.inferenceType.inference.Infer;
 
 /**
  * @author Sinigaglia Steeve
@@ -15,7 +15,7 @@ public class Var extends Expr {
     }
 
     @Override
-    public Type infer(TypeInfer typeInfer) {
-        return typeInfer.lookupEnv(this).instantiate(typeInfer);
+    public Type infer(Infer infer) {
+        return infer.lookupEnv(this).instantiate(infer);
     }
 }

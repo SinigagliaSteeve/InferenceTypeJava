@@ -1,6 +1,6 @@
 package fr.renaudSinigaglia.inferenceType.substitution;
 
-import fr.renaudSinigaglia.inferenceType.typing.TypeVariable;
+import fr.renaudSinigaglia.inferenceType.type.TypeVariable;
 
 import java.util.HashSet;
 
@@ -9,7 +9,7 @@ import java.util.HashSet;
  */
 public interface Substituable<T> {
 
-    T apply(Subst subst);
+    T apply(Substitution substitution);
 
     HashSet<TypeVariable> ftv();
 }

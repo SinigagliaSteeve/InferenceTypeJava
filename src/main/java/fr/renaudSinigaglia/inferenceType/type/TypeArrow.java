@@ -1,6 +1,6 @@
-package fr.renaudSinigaglia.inferenceType.typing;
+package fr.renaudSinigaglia.inferenceType.type;
 
-import fr.renaudSinigaglia.inferenceType.substitution.Subst;
+import fr.renaudSinigaglia.inferenceType.substitution.Substitution;
 
 import java.util.HashSet;
 
@@ -25,8 +25,8 @@ public class TypeArrow extends Type {
     }
 
     @Override
-    public TypeArrow apply(Subst subst) {
-        return new TypeArrow(typeLeft.apply(subst), typeRight.apply(subst));
+    public TypeArrow apply(Substitution substitution) {
+        return new TypeArrow(typeLeft.apply(substitution), typeRight.apply(substitution));
     }
 
     @Override

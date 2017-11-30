@@ -1,27 +1,29 @@
-package fr.renaudSinigaglia.inferenceType.typing;
+package fr.renaudSinigaglia.inferenceType.inference;
 
 import fr.renaudSinigaglia.inferenceType.base.Var;
+import fr.renaudSinigaglia.inferenceType.solver.Constraint;
+import fr.renaudSinigaglia.inferenceType.type.*;
 
 import java.util.*;
 
 /**
  * Created by damien on 03/11/2017.
  */
-public class TypeInfer {
+public class Infer {
 
     private List<Constraint> constraints;
     private List<TypeVariable> tvs = new ArrayList();
-    private TypeEnv typeEnv;
+    private Env env;
 
 
-    public TypeInfer() {
+    public Infer() {
         this.constraints = new ArrayList();
-        this.typeEnv = new TypeEnv();
+        this.env = new Env();
     }
 
-    private TypeInfer(TypeInfer parent) {
+    private Infer(Infer parent) {
         constraints = parent.constraints;
-        typeEnv = parent.typeEnv;
+        env = parent.env;
     }
 
 
@@ -31,20 +33,20 @@ public class TypeInfer {
         return tv;
     }
 
-    public TypeInfer inEnv(Var var, Scheme scheme) {
-        TypeInfer local = new TypeInfer(this);
-        local.typeEnv.remove(var);
-        local.typeEnv.extend(var, scheme);
+    public Infer inEnv(Var var, Scheme scheme) {
+        Infer local = new Infer(this);
+        local.env.remove(var);
+        local.env.extend(var, scheme);
         return local;
     }
 
     public Scheme lookupEnv(Var variable) {
-        return typeEnv.lookup(variable);
+        return env.lookup(variable);
     }
 
     public Scheme generalize(Type type) {
         Set<TypeVariable> setA = type.ftv();
-        Set<TypeVariable> setB = typeEnv.ftv();
+        Set<TypeVariable> setB = env.ftv();
         setA.removeAll(setB);
         ArrayList<TypeVariable> tvList = new ArrayList<>();
         tvList.addAll(setA);

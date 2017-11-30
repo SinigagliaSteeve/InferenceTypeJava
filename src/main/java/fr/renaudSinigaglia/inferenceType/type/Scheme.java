@@ -1,6 +1,7 @@
-package fr.renaudSinigaglia.inferenceType.typing;
+package fr.renaudSinigaglia.inferenceType.type;
 
-import fr.renaudSinigaglia.inferenceType.substitution.Subst;
+import fr.renaudSinigaglia.inferenceType.inference.Infer;
+import fr.renaudSinigaglia.inferenceType.substitution.Substitution;
 import fr.renaudSinigaglia.inferenceType.substitution.Substituable;
 
 import java.util.*;
@@ -30,20 +31,20 @@ public class Scheme implements Substituable<Scheme> {
         return type;
     }
 
-    public Type instantiate(TypeInfer env) {
+    public Type instantiate(Infer env) {
         List<TypeVariable> freshVariables = new LinkedList<>();
         variables.forEach(v -> freshVariables.add(env.createFreshTypeVariable()));
-        Subst subst = new Subst(variables, freshVariables);
-        return this.type.apply(subst);
+        Substitution substitution = new Substitution(variables, freshVariables);
+        return this.type.apply(substitution);
     }
 
     @Override
-    public Scheme apply(Subst subst) {
+    public Scheme apply(Substitution substitution) {
         List<TypeVariable> newList = new ArrayList<>();
         for (TypeVariable tv : variables) {
-            newList.add((TypeVariable) tv.apply(subst));
+            newList.add((TypeVariable) tv.apply(substitution));
         }
-        Type newType = type.apply(subst);
+        Type newType = type.apply(substitution);
         return new Scheme(newList, newType);
     }
 

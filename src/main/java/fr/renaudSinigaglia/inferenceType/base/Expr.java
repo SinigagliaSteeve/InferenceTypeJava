@@ -1,9 +1,9 @@
 package fr.renaudSinigaglia.inferenceType.base;
 
 import fr.renaudSinigaglia.inferenceType.solver.Solver;
-import fr.renaudSinigaglia.inferenceType.substitution.Subst;
-import fr.renaudSinigaglia.inferenceType.typing.Type;
-import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
+import fr.renaudSinigaglia.inferenceType.substitution.Substitution;
+import fr.renaudSinigaglia.inferenceType.inference.Infer;
+import fr.renaudSinigaglia.inferenceType.type.Type;
 
 /**
  * @author Sinigaglia Steeve
@@ -12,12 +12,12 @@ import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
 public abstract class Expr {
 
     public Type runInfer() {
-        TypeInfer typeInfer = new TypeInfer();
-        Type type = infer(typeInfer);
+        Infer infer = new Infer();
+        Type type = infer(infer);
         Solver solver = new Solver();
-        Subst subst = solver.runSolve(typeInfer.getConstraints());
-        return type.apply(subst);
+        Substitution substitution = solver.runSolve(infer.getConstraints());
+        return type.apply(substitution);
     }
 
-    public abstract Type infer(TypeInfer typeInfer);
+    public abstract Type infer(Infer infer);
 }
