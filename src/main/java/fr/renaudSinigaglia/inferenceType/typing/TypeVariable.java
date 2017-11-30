@@ -27,7 +27,7 @@ public class TypeVariable extends Type {
 
     @Override
     public Type apply(Subst subst) {
-        Type t = subst.getSubst().get(this);
+        Type t = subst.getSubsts().get(this);
         if (t != null) {
             return t;
         }
