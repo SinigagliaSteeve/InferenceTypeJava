@@ -18,6 +18,7 @@ public class Main {
     public static void main(String[] args) {
 
         // let f = (\x -> x) in (\z y -> z) (f True) (f (1::Int))
+        Solver solver = new Solver();
 
         // True
         Bool boolExp = new Bool(true);
@@ -38,8 +39,11 @@ public class Main {
 
         TypeInfer infer = new TypeInfer();
         Type t3 = expFinal.infer(infer);
-        Solver solver = new Solver();
+
+
+
         Subst s = solver.runSolve(infer.getConstraints());
+
         Type theType = t3.apply(s);
         System.out.println(t3);
         System.out.println(theType);

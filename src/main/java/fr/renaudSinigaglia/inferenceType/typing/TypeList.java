@@ -28,7 +28,7 @@ public class TypeList {
     }
 
     // get HEAD of list
-    public Type getLeft() {
+    public Type head() {
         if(typeList.isEmpty()) {
             return null;
         }

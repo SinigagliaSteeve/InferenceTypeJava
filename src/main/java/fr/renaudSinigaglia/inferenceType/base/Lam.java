@@ -35,7 +35,7 @@ public class Lam extends Expr {
         TypeVariable tv = typeInfer.createFreshTypeVariable();
         TypeInfer localEnv = typeInfer.inEnv(this.variable, Scheme.forAll(tv));
         Type res = expression.infer(localEnv);
-        return new TypeArray(tv, res);
+        return new TypeArrow(tv, res);
     }
 
 

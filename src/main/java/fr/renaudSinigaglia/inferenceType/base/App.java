@@ -1,7 +1,7 @@
 package fr.renaudSinigaglia.inferenceType.base;
 
 import fr.renaudSinigaglia.inferenceType.typing.Type;
-import fr.renaudSinigaglia.inferenceType.typing.TypeArray;
+import fr.renaudSinigaglia.inferenceType.typing.TypeArrow;
 import fr.renaudSinigaglia.inferenceType.typing.TypeInfer;
 import fr.renaudSinigaglia.inferenceType.typing.TypeVariable;
 
@@ -38,7 +38,7 @@ public class App extends Expr {
         Type t1 = leftExpr.infer(typeInfer);
         Type tr = rightExpr.infer(typeInfer);
         TypeVariable tv = typeInfer.createFreshTypeVariable();
-        typeInfer.uni(t1, new TypeArray(tr, tv));
+        typeInfer.uni(t1, new TypeArrow(tr, tv));
         return tv;
     }
 

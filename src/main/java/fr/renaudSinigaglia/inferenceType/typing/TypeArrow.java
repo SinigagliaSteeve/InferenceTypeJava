@@ -1,18 +1,17 @@
 package fr.renaudSinigaglia.inferenceType.typing;
 
 import fr.renaudSinigaglia.inferenceType.substitution.Subst;
-import fr.renaudSinigaglia.inferenceType.exception.UnificationFailException;
 
 import java.util.HashSet;
 
 /**
  * Created by damien on 03/11/2017.
  */
-public class TypeArray extends Type {
+public class TypeArrow extends Type {
     private Type typeLeft;
     private Type typeRight;
 
-    public TypeArray(Type typeLeft, Type typeRight) {
+    public TypeArrow(Type typeLeft, Type typeRight) {
         this.typeLeft = typeLeft;
         this.typeRight = typeRight;
     }
@@ -34,8 +33,8 @@ public class TypeArray extends Type {
     }
 
     @Override
-    public TypeArray apply(Subst subst) {
-        return new TypeArray(typeLeft.apply(subst), typeRight.apply(subst));
+    public TypeArrow apply(Subst subst) {
+        return new TypeArrow(typeLeft.apply(subst), typeRight.apply(subst));
     }
 
     @Override
@@ -54,8 +53,8 @@ public class TypeArray extends Type {
 
 //    @Override
 //    public Subst unifies(Type type) {
-//        if (type instanceof TypeArray) {
-//            TypeArray typeArray = (TypeArray) type;
+//        if (type instanceof TypeArrow) {
+//            TypeArrow typeArray = (TypeArrow) type;
 //            TypeList tuple1 = new TypeList(this.typeLeft, this.typeRight);
 //            TypeList tuple2 = new TypeList(typeArray.typeLeft, typeArray.typeRight);
 //            return unifyMany(tuple1, tuple2);
@@ -63,7 +62,7 @@ public class TypeArray extends Type {
 //        throw new UnificationFailException(this, type);
 //    }
 
-//    private Subst unifyMany(TypeArray t1, TypeArray t2) {
+//    private Subst unifyMany(TypeArrow t1, TypeArrow t2) {
 //        Subst subst1 = t1.typeLeft.unifies(t2.typeLeft);
 //        Subst subst2 = t1.typeRight.apply(subst1).unifies(t2.typeRight.apply(subst1));
 //        Subst substFinal = subst2.compose(subst1); //todo apply de sust.

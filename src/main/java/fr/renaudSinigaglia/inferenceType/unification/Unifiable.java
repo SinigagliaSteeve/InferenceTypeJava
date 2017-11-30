@@ -1,6 +1,5 @@
 package fr.renaudSinigaglia.inferenceType.unification;
 
-import com.sun.tools.javac.util.List;
 import fr.renaudSinigaglia.inferenceType.exception.UnificationFailException;
 import fr.renaudSinigaglia.inferenceType.exception.UnificationMismatchException;
 import fr.renaudSinigaglia.inferenceType.substitution.Subst;
@@ -38,18 +37,18 @@ public class Unifiable {
         }
 
 
-        if(constraint.getT1() instanceof TypeArray && constraint.getT2() instanceof TypeArray) {
-            TypeArray typeArray1 = (TypeArray) constraint.getT1();
-            TypeArray typeArray2 = (TypeArray) constraint.getT2();
+        if(constraint.getT1() instanceof TypeArrow && constraint.getT2() instanceof TypeArrow) {
+            TypeArrow typeArrow1 = (TypeArrow) constraint.getT1();
+            TypeArrow typeArrow2 = (TypeArrow) constraint.getT2();
 
 
             ArrayList<Type> list1 = new ArrayList<>();
-            list1.add(typeArray1.getTypeLeft());
-            list1.add(typeArray1.getTypeRight());
+            list1.add(typeArrow1.getTypeLeft());
+            list1.add(typeArrow1.getTypeRight());
 
             ArrayList<Type> list2 = new ArrayList<>();
-            list2.add(typeArray2.getTypeLeft());
-            list2.add(typeArray2.getTypeRight());
+            list2.add(typeArrow2.getTypeLeft());
+            list2.add(typeArrow2.getTypeRight());
             TypeList tuple1 = new TypeList(list1);
             TypeList tuple2 = new TypeList(list2);
 
@@ -71,7 +70,7 @@ public class Unifiable {
             throw new UnificationMismatchException(t1, t2);
         }
 
-        Subst su1 = unifies(new Constraint(t1.getLeft(), t2.getLeft()));
+        Subst su1 = unifies(new Constraint(t1.head(), t2.head()));
         Subst su2 = unifyMany(t1.apply(su1), t2.apply(su1));
         return su2.compose(su1);
     }
