@@ -21,18 +21,32 @@ public class Infer {
         this.env = new Env();
     }
 
+    /**
+     * Utilisé pour créer un environnement local.
+     * @param parent parent
+     */
     private Infer(Infer parent) {
         constraints = parent.constraints;
         env = parent.env;
     }
 
 
+    /**
+     * Méthode permettant la création d'une freshVariable unique
+     * @return TypeVariable avec nom unique
+     */
     public TypeVariable createFreshTypeVariable() {
         TypeVariable tv = FreshVariableBuilder.createFreshTypeVariable();
         tvs.add(tv);
         return tv;
     }
 
+    /**
+     * Créer un environnement local (cas d'une Lambda Expr)
+     * @param var variable qui est présente dans le contexte local
+     * @param scheme scheme
+     * @return Infer
+     */
     public Infer inEnv(Var var, Scheme scheme) {
         Infer local = new Infer(this);
         local.env.remove(var);
@@ -40,10 +54,20 @@ public class Infer {
         return local;
     }
 
+    /**
+     * Check si la variable est présente dans l'environnement et retourne un Scheme.
+     * @param variable variable à chercher dans l'env.
+     * @return Scheme
+     */
     public Scheme lookupEnv(Var variable) {
         return env.lookup(variable);
     }
 
+    /**
+     * Méthode créant un Scheme à partir d'un Type.
+     * @param type type à généraliser.
+     * @return un Type généralisé (Scheme)
+     */
     public Scheme generalize(Type type) {
         Set<TypeVariable> setA = type.ftv();
         Set<TypeVariable> setB = env.ftv();
