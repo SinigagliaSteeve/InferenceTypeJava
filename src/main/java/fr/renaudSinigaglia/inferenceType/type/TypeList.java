@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 /**
  * Created by damien on 29/11/2017.
+ *
+ * Classe représentant un ensemble de Type pour gérer le cas d'unfication multiple (unifyMany)
  */
 public class TypeList {
 
@@ -24,7 +26,10 @@ public class TypeList {
         return new TypeList(typeList.stream().map(type -> type.apply(substitution)).collect(Collectors.toList()));
     }
 
-    // get HEAD of list
+    /**
+     * Récupérer la tête de la liste
+     * @return Le premier type
+     */
     public Type head() {
         if(typeList.isEmpty()) {
             return null;

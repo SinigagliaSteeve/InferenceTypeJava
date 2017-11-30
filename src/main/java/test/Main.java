@@ -18,24 +18,39 @@ public class Main {
         // let f = (\x -> x) in (\z y -> z) (f True) (f (1::Int))
 
         // True
-        Bool boolExp = new Bool(true);
-        Type t = boolExp.runInfer();
-        System.out.println(t);
+//        Bool boolExp = new Bool(true);
+//        Type t = boolExp.runInfer();
+//        System.out.println(t);
+//
+//        // (\x -> True)
+//        Lam lamExp = new Lam(new Var("x"),boolExp);
+//        Type t2 = lamExp.runInfer();
+//        System.out.println(t2);
+//
+//        // let f = (\x -> x) in (f True)
+//        Var f = new Var("f");
+//        Var x = new Var("x");
+//        Lam l = new Lam(x, x);
+//        App app = new App(f, new Int(4));
+//        Let expFinal = new Let(f, l, app);
+//
+//        Type t3 = expFinal.runInfer();
+//        System.out.println(t3);
 
-        // (\x -> True)
-        Lam lamExp = new Lam(new Var("x"),boolExp);
-        Type t2 = lamExp.runInfer();
-        System.out.println(t2);
+        // let a = (\ u -> u) in (\v -> v) (a True)
+        Var a = new Var("a");
+        Var u = new Var("u");
+        Var v = new Var("v");
+//        Var w = new Var("w");
+        Lam lamX = new Lam(u, u);
+        App appBool = new App(a, new Bool(true));
+//        App appInt = new App(a, new Int(4));
+        Lam lamB = new Lam(v, v);
 
-        // let f = (\x -> x) in (f True)
-        Var f = new Var("f");
-        Var x = new Var("x");
-        Lam l = new Lam(x, x);
-        App app = new App(f, new Int(4));
-        Let expFinal = new Let(f, l, app);
+        App appF = new App(lamB, appBool);
 
-        Type t3 = expFinal.runInfer();
-        System.out.println(t3);
+        Let letFinal = new Let(a, lamX, appF);
+        System.out.println(letFinal.runInfer());
 
     }
 }

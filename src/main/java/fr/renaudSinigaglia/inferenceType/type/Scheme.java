@@ -9,6 +9,8 @@ import java.util.*;
 /**
  * @author Sinigaglia Steeve
  * @version 1.0.0
+ *
+ * Classe représentant les scheme correspondant à la généralisation d'un type
  */
 public class Scheme implements Substituable<Scheme> {
     private List<TypeVariable> variables;
@@ -19,6 +21,12 @@ public class Scheme implements Substituable<Scheme> {
         this.type = type;
     }
 
+    /**
+     * Constructeur d'un scheme
+     * @param type Le type de base
+     * @param variables les variables de type libres
+     * @return Un nouveau scheme
+     */
     public static Scheme forAll(Type type, TypeVariable... variables) {
         if (variables.length == 0) {
             return new Scheme(Collections.<TypeVariable>emptyList(), type);
@@ -31,6 +39,11 @@ public class Scheme implements Substituable<Scheme> {
         return type;
     }
 
+    /**
+     * Méthode d'instanciation d'un scheme
+     * @param env Le contexte d'inférence
+     * @return Un type instancié
+     */
     public Type instantiate(Infer env) {
         List<TypeVariable> freshVariables = new LinkedList<>();
         variables.forEach(v -> freshVariables.add(env.createFreshTypeVariable()));

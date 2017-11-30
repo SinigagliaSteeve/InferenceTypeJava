@@ -6,6 +6,8 @@ import java.util.HashSet;
 
 /**
  * Created by damien on 03/11/2017.
+ *
+ * Classe représentant les types complexes (ex: x -> y)
  */
 public class TypeArrow extends Type {
     private Type typeLeft;
@@ -34,7 +36,6 @@ public class TypeArrow extends Type {
         HashSet<TypeVariable> set = new HashSet<>();
         set.addAll(typeLeft.ftv());
         set.addAll(typeRight.ftv());
-
         return set;
     }
 
