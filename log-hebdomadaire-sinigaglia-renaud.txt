@@ -58,3 +58,18 @@ Prise de connaissance du sujet :
 			- Implémentations de ftv réalisées
 			- Reste à faire les fonctions apply, avec quelques difficultés de compréhension
 		- Analyse du fonctionnement des fonctions unifies et unifyMany à implémenter à la fin de la substitution
+
+#### Semaine 48
+    - Séance du 28/11
+            - Développement de la substitution
+            - Les méthodes generalize et instantiate.
+    - Séance du 29/11
+           - Implémentation de l'unification (compose, unifies, unifyMany).
+           - Fin de la substitution
+           - Début et fin Résolution des contraintes
+           - Tests de cas simples
+    - Séance du 30/11
+           - Refractoring et clean du code.
+           - Production d'un document UML pour l'architecture global du projet.
+           - Ajout de tests + complexes pour tester l'ensemble du projet.
+           - Rédaction REAME.MD et fin du projet.
